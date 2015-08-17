@@ -4,6 +4,7 @@ var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
 
 var config = require('./config')();
+var env = require('./utils/env');
 
 
 var statsOptions = {
@@ -24,7 +25,9 @@ var statsOptions = {
 
 module.exports = function (watch) {
   return function (callback) {
-    var webpackConfig = _.defaults({}, config.webpack, {});
+    var webpackConfig = _.defaults({
+      devtool: 'inline-source-map'
+    }, config.webpack, {});
     var webpackDevServerConfig = _.defaults({
       stats: statsOptions
     }, config.webpackDevServer, {});

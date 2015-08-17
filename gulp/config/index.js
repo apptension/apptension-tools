@@ -25,7 +25,7 @@ function Config() {
       dist: dist,
       app: app,
       tmp: tmp,
-      sass: path.join(app, 'styles', '**/*.scss'),
+      sass: path.join(app, '**/*.scss'),
       sprity: sprites,
       spritesCss: spritesCssPath,
       eslint: scripts + '/**/*.js',
@@ -73,7 +73,9 @@ function Config() {
     },
 
     sass: {
-      includePaths: [tmp]
+      includePaths: [tmp],
+      noCache: false,
+      style: 'compact'
     },
 
     sprity: {
