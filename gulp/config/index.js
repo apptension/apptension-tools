@@ -29,7 +29,11 @@ function Config() {
       sprity: sprites,
       spritesCss: spritesCssPath,
       eslint: scripts + '/**/*.js',
-      index: path.join(app, 'index.hbs')
+      index: path.join(app, 'index.hbs'),
+      images: [
+        path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
+        '!' + sprites
+      ]
     }
   }, _userConfig, {
     webpack: {
@@ -68,7 +72,9 @@ function Config() {
       merge: false
     },
 
-    sass: {},
+    sass: {
+      includePaths: [tmp]
+    },
 
     sprity: {
       style: 'sprites.scss',

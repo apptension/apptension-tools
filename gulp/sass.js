@@ -8,9 +8,7 @@ var browserSync = require('./utils/browserSyncInstance');
 var config = require('./config')();
 
 module.exports = function () {
-  var compiler = sass({
-    includePaths: [config.paths.tmp]
-  });
+  var compiler = sass(config.sass);
 
   compiler.on('error', sass.logError);
   gulp.src(config.paths.sass, {base: config.paths.app})

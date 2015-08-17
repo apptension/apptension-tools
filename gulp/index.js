@@ -11,6 +11,7 @@ module.exports = function (_config) {
     compileIndex: require('./compileIndex'),
     env: require('./utils/env'),
     eslint: require('./eslint'),
+    images: require('./images'),
     livereload: require('./livereload'),
     rev: require('./rev'),
     sass: require('./sass'),
