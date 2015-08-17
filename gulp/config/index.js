@@ -10,13 +10,26 @@ function Config() {
   var tmp = path.join(cwd, _.get(_userConfig, 'paths.tmp', '.tmp'));
   var scriptsDirName = 'scripts';
   var scripts = path.join(app, scriptsDirName);
+  var imagesDirName = 'images';
+  var spritesDirName = 'sprites';
+  var sprites = path.join(app, imagesDirName, spritesDirName, '**/*.png');
+  var spritesCssPath = path.join(imagesDirName, spritesDirName);
 
   return Object.freeze(_.defaultsDeep({
+    sprity: {
+      src: sprites,
+      cssPath: '/' + spritesCssPath
+    },
     paths: {
       cwd: cwd,
       dist: dist,
       app: app,
-      tmp: tmp
+      tmp: tmp,
+      sass: path.join(app, 'styles', '**/*.scss'),
+      sprity: sprites,
+      spritesCss: spritesCssPath,
+      eslint: scripts + '/**/*.js',
+      index: path.join(app, 'index.hbs')
     }
   }, _userConfig, {
     webpack: {
@@ -24,6 +37,23 @@ function Config() {
       output: {
         path: tmp,
         filename: scriptsDirName + '/[name].js'
+      },
+      module: {
+        loaders: [
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules|bower_components/,
+            loader: 'babel'
+          },
+          {
+            test: /\.html$/,
+            loader: 'html'
+          },
+          {
+            test: /\.hbs$/,
+            loader: 'handlebars'
+          }
+        ]
       }
     },
 
@@ -40,10 +70,17 @@ function Config() {
 
     sass: {},
 
-    paths: {
-      index: path.join(app, 'index.hbs'),
-      sass: path.join(app, 'styles', '**/*.scss'),
-      eslint: scripts + '/**/*.js'
+    sprity: {
+      style: 'sprites.scss',
+      processor: 'sass',
+      'style-type': 'scss',
+      dimension: [{
+        ratio: 1, dpi: 72
+      }, {
+        ratio: 2, dpi: 192
+      }],
+      prefix: 'icon',
+      split: true
     }
   }));
 }
