@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var path = require('path');
-var merge = require('merge-stream');
 var gulpif = require('gulp-if');
 var sprity = require('sprity');
 var env = require('./utils/env');
@@ -19,6 +18,8 @@ module.exports = function () {
     options.cachebuster = true;
   }
 
+  imagesDest = path.join(imagesDest, config.paths.spritesCss);
+
   return sprity.src(options)
-    .pipe(gulpif('*.png', gulp.dest(path.join(imagesDest, config.paths.spritesCss)), gulp.dest(styleDest)));
+    .pipe(gulpif('*.png', gulp.dest(imagesDest), gulp.dest(styleDest)));
 };

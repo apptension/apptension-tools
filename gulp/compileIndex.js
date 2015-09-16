@@ -14,11 +14,11 @@ var config = require('./config')();
 module.exports = function () {
   var handlebarOpts = {
     helpers: {
-      assetPath: function (path, context) {
+      assetPath: function (_path, context) {
         if (env.isProduction()) {
-          return context.data.root.manifest[path];
+          return context.data.root.manifest[_path];
         }
-        return path;
+        return _path;
       }
     }
   };

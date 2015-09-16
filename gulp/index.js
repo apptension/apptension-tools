@@ -12,6 +12,7 @@ module.exports = function (_config) {
     env: require('./utils/env'),
     eslint: require('./eslint'),
     images: require('./images'),
+    karma: require('./karma'),
     livereload: require('./livereload'),
     rev: require('./rev'),
     sass: require('./sass'),

@@ -6,7 +6,6 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./config')();
 var env = require('./utils/env');
 
-
 var statsOptions = {
   colors: gutil.colors.supportsColor,
   hash: false,
@@ -27,10 +26,18 @@ module.exports = function (watch) {
   return function (callback) {
     var webpackConfig = _.defaults({
       devtool: 'inline-source-map'
-    }, config.webpack, {});
+    }, _.cloneDeep(config.webpack), {});
     var webpackDevServerConfig = _.defaults({
       stats: statsOptions
-    }, config.webpackDevServer, {});
+    }, _.cloneDeep(config.webpackDevServer), {});
+
+    if (env.isProduction()) {
+      webpackConfig.devtool = false;
+      webpackConfig.plugins = webpackConfig.plugins.concat([
+        new webpack.optimize.UglifyJsPlugin()
+      ]);
+    }
+
     var compiler = webpack(webpackConfig, function (err, stats) {
       if (err) {
         throw new gutil.PluginError('webpack', err);

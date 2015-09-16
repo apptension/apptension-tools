@@ -1,19 +1,42 @@
 var _ = require('lodash');
 var path = require('path');
 
-var _userConfig;
+
+var _userConfig = {};
 
 function Config() {
   var cwd = _.get(_userConfig, 'paths.cwd', process.cwd());
   var dist = path.join(cwd, _.get(_userConfig, 'paths.dist', 'dist'));
   var app = path.join(cwd, _.get(_userConfig, 'paths.app', 'app'));
   var tmp = path.join(cwd, _.get(_userConfig, 'paths.tmp', '.tmp'));
-  var scriptsDirName = 'scripts';
-  var scripts = path.join(app, scriptsDirName);
+  var srcDirName = 'src';
+  var src = path.join(app, srcDirName);
+
   var imagesDirName = 'images';
   var spritesDirName = 'sprites';
   var sprites = path.join(app, imagesDirName, spritesDirName, '**/*.png');
   var spritesCssPath = path.join(imagesDirName, spritesDirName);
+  var testIndex = path.resolve(app, 'spec', 'test.index.js');
+  var karmaPreprocessors = {};
+  karmaPreprocessors[testIndex] = ['webpack', 'sourcemap'];
+
+  var webpackLoaders = [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules|bower_components/,
+      loader: 'babel'
+    },
+    {
+      test: /\.html$/,
+      loader: 'html'
+    },
+    {
+      test: /\.hbs$/,
+      loader: 'handlebars'
+    }
+  ];
+
+  var webpackPlugins = [];
 
   return Object.freeze(_.defaultsDeep({
     sprity: {
@@ -28,7 +51,7 @@ function Config() {
       sass: path.join(app, '**/*.scss'),
       sprity: sprites,
       spritesCss: spritesCssPath,
-      eslint: scripts + '/**/*.js',
+      eslint: src + '/**/*.js',
       index: path.join(app, 'index.hbs'),
       images: [
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
@@ -37,28 +60,15 @@ function Config() {
     }
   }, _userConfig, {
     webpack: {
-      entry: path.join(scripts, 'main.js'),
+      entry: path.join(src, 'main.js'),
       output: {
         path: tmp,
-        filename: scriptsDirName + '/[name].js'
+        filename: srcDirName + '/[name].js'
       },
       module: {
-        loaders: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules|bower_components/,
-            loader: 'babel'
-          },
-          {
-            test: /\.html$/,
-            loader: 'html'
-          },
-          {
-            test: /\.hbs$/,
-            loader: 'handlebars'
-          }
-        ]
-      }
+        loaders: webpackLoaders
+      },
+      plugins: webpackPlugins
     },
 
     webpackDevServer: {
@@ -89,6 +99,55 @@ function Config() {
       }],
       prefix: 'icon',
       split: true
+    },
+
+    karma: {
+      basePath: '',
+      frameworks: ['jasmine'],
+      files: [testIndex],
+      preprocessors: karmaPreprocessors,
+      webpack: {
+        devtool: 'inline-source-map',
+        module: {
+          loaders: webpackLoaders.concat([
+            {
+              test: /\.jsx?$/,
+              include: src,
+              exclude: /.spec.jsx?$/,
+              loader: 'isparta'
+            }
+          ])
+        },
+        plugins: webpackPlugins.concat([])
+      },
+      webpackMiddleware: {
+        stats: {
+          colors: true
+        }
+      },
+      reporters: ['progress', 'coverage'],
+
+      coverageReporter: {
+        type: 'html',
+        dir: 'coverage/'
+      },
+      port: 9876,
+      colors: true,
+      logLevel: 'INFO',
+      autoWatch: false,
+      browsers: ['PhantomJS'],
+      captureTimeout: 60000,
+      singleRun: true,
+      plugins: [
+        require('jasmine'),
+        require('karma-webpack'),
+        require('karma-coverage'),
+        require('karma-jasmine'),
+        require('karma-sourcemap-loader'),
+        require('karma-spec-reporter'),
+        require('karma-chrome-launcher'),
+        require('karma-phantomjs-launcher')
+      ]
     }
   }));
 }
