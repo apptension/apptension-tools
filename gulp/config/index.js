@@ -36,7 +36,19 @@ function Config() {
     }
   ];
 
-  var webpackPlugins = [];
+  var karmaWebpackLoaders = webpackLoaders.concat([
+    {
+      test: /\.jsx?$/,
+      include: src,
+      exclude: /.spec.jsx?$/,
+      loader: 'isparta'
+    }
+  ]).concat(_.get(_userConfig, 'karma.webpack.module.loaders', []));
+
+  webpackLoaders = webpackLoaders.concat(_.get(_userConfig, 'webpack.module.loaders', []));
+
+  var webpackPlugins = [].concat(_.get(_userConfig, 'webpack.plugins', []));
+  var karmaWebpackPlugins = [].concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
   return Object.freeze(_.defaultsDeep({
     sprity: {
@@ -57,6 +69,20 @@ function Config() {
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
         '!' + sprites
       ]
+    },
+    webpack: {
+      module: {
+        loaders: webpackLoaders
+      },
+      plugins: webpackPlugins
+    },
+    karma: {
+      webpack: {
+        module: {
+          loaders: karmaWebpackLoaders
+        },
+        plugins: karmaWebpackPlugins
+      }
     }
   }, _userConfig, {
     webpack: {
@@ -64,15 +90,14 @@ function Config() {
       output: {
         path: tmp,
         filename: srcDirName + '/[name].js'
-      },
-      module: {
-        loaders: webpackLoaders
-      },
-      plugins: webpackPlugins
+      }
     },
 
     webpackDevServer: {
-      contentBase: tmp
+      contentBase: tmp,
+      proxy: {
+        '/api/*': 'http://localhost:8080'
+      }
     },
 
     port: 8000,
@@ -117,8 +142,7 @@ function Config() {
               loader: 'isparta'
             }
           ])
-        },
-        plugins: webpackPlugins.concat([])
+        }
       },
       webpackMiddleware: {
         stats: {
