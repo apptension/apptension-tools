@@ -50,7 +50,7 @@ function Config() {
   var webpackPlugins = [].concat(_.get(_userConfig, 'webpack.plugins', []));
   var karmaWebpackPlugins = [].concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
-  return Object.freeze(_.defaultsDeep({
+  var config = Object.freeze(_.defaultsDeep({
     sprity: {
       src: sprites,
       cssPath: '/' + spritesCssPath
@@ -70,20 +70,8 @@ function Config() {
         '!' + sprites
       ]
     },
-    webpack: {
-      module: {
-        loaders: webpackLoaders
-      },
-      plugins: webpackPlugins
-    },
-    karma: {
-      webpack: {
-        module: {
-          loaders: karmaWebpackLoaders
-        },
-        plugins: karmaWebpackPlugins
-      }
-    }
+    webpack: {module: {loaders: []}, plugins: []},
+    karma: {webpack: {module: {loaders: []}, plugins: []}}
   }, _userConfig, {
     webpack: {
       entry: path.join(src, 'main.js'),
@@ -174,6 +162,13 @@ function Config() {
       ]
     }
   }));
+
+  config.webpack.module.loaders = webpackLoaders;
+  config.webpack.plugins = webpackPlugins;
+  config.karma.webpack.module.loaders = karmaWebpackLoaders;
+  config.karma.webpack.plugins = karmaWebpackPlugins;
+
+  return config;
 }
 
 Config.setUserConfig = function (_config) {
