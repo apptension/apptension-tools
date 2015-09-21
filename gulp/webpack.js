@@ -26,10 +26,11 @@ module.exports = function (watch) {
   return function (callback) {
     var webpackConfig = _.defaults({
       devtool: 'inline-source-map'
-    }, _.cloneDeep(config.webpack), {});
+    }, config.webpack, {});
+
     var webpackDevServerConfig = _.defaults({
       stats: statsOptions
-    }, _.cloneDeep(config.webpackDevServer), {});
+    }, config.webpackDevServer, {});
 
     if (env.isProduction()) {
       webpackConfig.devtool = false;

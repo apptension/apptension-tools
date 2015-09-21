@@ -50,7 +50,7 @@ function Config() {
   var webpackPlugins = [].concat(_.get(_userConfig, 'webpack.plugins', []));
   var karmaWebpackPlugins = [].concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
-  var config = Object.freeze(_.defaultsDeep({
+  return Object.freeze(_.defaultsDeep({
     sprity: {
       src: sprites,
       cssPath: '/' + spritesCssPath
@@ -70,8 +70,8 @@ function Config() {
         '!' + sprites
       ]
     },
-    webpack: {module: {loaders: []}, plugins: []},
-    karma: {webpack: {module: {loaders: []}, plugins: []}}
+    webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
+    karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}}
   }, _userConfig, {
     webpack: {
       entry: path.join(src, 'main.js'),
@@ -120,17 +120,7 @@ function Config() {
       files: [testIndex],
       preprocessors: karmaPreprocessors,
       webpack: {
-        devtool: 'inline-source-map',
-        module: {
-          loaders: webpackLoaders.concat([
-            {
-              test: /\.jsx?$/,
-              include: src,
-              exclude: /.spec.jsx?$/,
-              loader: 'isparta'
-            }
-          ])
-        }
+        devtool: 'inline-source-map'
       },
       webpackMiddleware: {
         stats: {
@@ -162,13 +152,6 @@ function Config() {
       ]
     }
   }));
-
-  config.webpack.module.loaders = webpackLoaders;
-  config.webpack.plugins = webpackPlugins;
-  config.karma.webpack.module.loaders = karmaWebpackLoaders;
-  config.karma.webpack.plugins = karmaWebpackPlugins;
-
-  return config;
 }
 
 Config.setUserConfig = function (_config) {
