@@ -9,6 +9,7 @@ function Config() {
   var dist = path.join(cwd, _.get(_userConfig, 'paths.dist', 'dist'));
   var app = path.join(cwd, _.get(_userConfig, 'paths.app', 'app'));
   var tmp = path.join(cwd, _.get(_userConfig, 'paths.tmp', '.tmp'));
+  var publicAssets = path.join(app, _.get(_userConfig, 'paths.public', 'public/**/*'));
   var srcDirName = 'src';
   var src = path.join(app, srcDirName);
 
@@ -72,7 +73,8 @@ function Config() {
       images: [
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
         '!' + sprites
-      ]
+      ],
+      publicAssets: publicAssets
     },
     webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
     karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}}
