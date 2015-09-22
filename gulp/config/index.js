@@ -33,6 +33,10 @@ function Config() {
     {
       test: /\.hbs$/,
       loader: 'handlebars'
+    },
+    {
+      test: /\.json$/,
+      loader: 'json'
     }
   ];
 
