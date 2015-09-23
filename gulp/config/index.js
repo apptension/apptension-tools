@@ -18,6 +18,7 @@ function Config() {
   var sprites = path.join(app, imagesDirName, spritesDirName, '**/*.png');
   var spritesCssPath = path.join(imagesDirName, spritesDirName);
   var testIndex = path.resolve(app, 'spec', 'test.index.js');
+  var environment = path.join(src, 'environment');
   var karmaPreprocessors = {};
   karmaPreprocessors[testIndex] = ['webpack', 'sourcemap'];
 
@@ -74,7 +75,12 @@ function Config() {
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
         '!' + sprites
       ],
-      publicAssets: publicAssets
+      publicAssets: publicAssets,
+      jsConfig: {
+        development: path.join(environment, 'development.js'),
+        production: path.join(environment, 'production.js'),
+        test: path.join(environment, 'test.js')
+      }
     },
     webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
     karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}}

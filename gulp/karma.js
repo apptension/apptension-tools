@@ -11,6 +11,8 @@ module.exports = function (watch) {
       singleRun: !watch
     }, config.karma);
 
+    _.set(options, 'webpack.resolve.alias.env-config', config.paths.jsConfig.test);
+
     var server = new karma.Server(options, function (exitCode) {
       if (exitCode) {
         callback('Karma has exited with ' + exitCode);

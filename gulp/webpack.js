@@ -32,12 +32,19 @@ module.exports = function (watch) {
       stats: statsOptions
     }, config.webpackDevServer, {});
 
+    webpackConfig.resolve = webpack.resolve || {};
+
+    var jsConfig;
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins = webpackConfig.plugins.concat([
         new webpack.optimize.UglifyJsPlugin()
       ]);
+      jsConfig = config.paths.jsConfig.development;
+    } else {
+      jsConfig = config.paths.jsConfig.production
     }
+    _.set(webpackConfig, 'resolve.alias.env-config', jsConfig);
 
     var compiler = webpack(webpackConfig, function (err, stats) {
       if (err) {
