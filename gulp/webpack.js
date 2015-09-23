@@ -40,9 +40,9 @@ module.exports = function (watch) {
       webpackConfig.plugins = webpackConfig.plugins.concat([
         new webpack.optimize.UglifyJsPlugin()
       ]);
-      jsConfig = config.paths.jsConfig.development;
+      jsConfig = config.paths.jsConfig.production;
     } else {
-      jsConfig = config.paths.jsConfig.production
+      jsConfig = config.paths.jsConfig.development
     }
     _.set(webpackConfig, 'resolve.alias.env-config', jsConfig);
 
