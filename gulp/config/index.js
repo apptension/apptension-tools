@@ -59,8 +59,10 @@ function Config() {
 
   var webpackPlugins = [
     new ExtractTextPlugin(path.join(srcDirName, 'vendor.css'))
-  ].concat(_.get(_userConfig, 'webpack.plugins', []));
-  var karmaWebpackPlugins = [].concat(_.get(_userConfig, 'karma.webpack.plugins', []));
+  ];
+  var karmaWebpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
+
+  webpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'webpack.plugins', []));
 
   return Object.freeze(_.defaultsDeep({
     sprity: {
