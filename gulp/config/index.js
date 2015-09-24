@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var path = require('path');
-
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var _userConfig = {};
 
@@ -42,7 +42,7 @@ function Config() {
     },
     {
       test: /\.css$/,
-      loader: 'css'
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }
   ];
 
@@ -57,7 +57,9 @@ function Config() {
 
   webpackLoaders = webpackLoaders.concat(_.get(_userConfig, 'webpack.module.loaders', []));
 
-  var webpackPlugins = [].concat(_.get(_userConfig, 'webpack.plugins', []));
+  var webpackPlugins = [
+    new ExtractTextPlugin(path.join(srcDirName, 'vendor.css'))
+  ].concat(_.get(_userConfig, 'webpack.plugins', []));
   var karmaWebpackPlugins = [].concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
   return Object.freeze(_.defaultsDeep({
