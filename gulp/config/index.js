@@ -39,6 +39,10 @@ function Config() {
     {
       test: /\.json$/,
       loader: 'json'
+    },
+    {
+      test: /\.css$/,
+      loader: 'css'
     }
   ];
 
