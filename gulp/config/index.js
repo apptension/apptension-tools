@@ -64,6 +64,8 @@ function Config() {
 
   webpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'webpack.plugins', []));
 
+  var sassIncludePaths = [tmp].concat(_.get(_userConfig, 'sass.includePaths', []));
+
   return Object.freeze(_.defaultsDeep({
     sprity: {
       src: sprites,
@@ -91,7 +93,10 @@ function Config() {
       }
     },
     webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
-    karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}}
+    karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}},
+    sass: {
+      includePaths: sassIncludePaths
+    }
   }, _userConfig, {
     webpack: {
       entry: path.join(src, 'main.js'),
@@ -116,7 +121,6 @@ function Config() {
     },
 
     sass: {
-      includePaths: [tmp],
       noCache: false,
       style: 'compact'
     },
