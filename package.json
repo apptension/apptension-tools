@@ -56,10 +56,8 @@
     "object-assign": "^3.0.0",
     "phantomjs": "^1.9.18",
     "sprity": "^1.0.7",
+    "sprity-sass": "^1.0.4",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
-  },
-  "dependencies": {
-    "sprity-sass": "apptension/sprity-sass"
   }
 }

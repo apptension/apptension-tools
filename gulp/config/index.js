@@ -129,6 +129,11 @@ function Config() {
       style: 'sprites.scss',
       processor: 'sprity-sass',
       'style-type': 'scss',
+      dimension: [{
+        ratio: 1, dpi: 72
+      }, {
+        ratio: 2, dpi: 192
+      }],
       prefix: 'icon',
       split: true
     },
