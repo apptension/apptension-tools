@@ -127,7 +127,7 @@ function Config() {
 
     sprity: {
       style: 'sprites.scss',
-      processor: 'sass',
+      processor: 'sprity-sass',
       'style-type': 'scss',
       prefix: 'icon',
       split: true
