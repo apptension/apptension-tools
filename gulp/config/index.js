@@ -136,7 +136,8 @@ function Config() {
         ratio: 2, dpi: 192
       }],
       prefix: 'icon',
-      split: true
+      split: true,
+      engine: 'sprity-gm'
     },
 
     karma: {
