@@ -85,6 +85,7 @@ function Config() {
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
         '!' + sprites
       ],
+      htaccess: path.join(cwd, '.htaccess-prod'),
       publicAssets: publicAssets,
       jsConfig: {
         development: path.join(environment, 'development.js'),

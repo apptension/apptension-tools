@@ -9,6 +9,7 @@ module.exports = function (_config) {
     clean: require('./clean'),
     config: config(),
     compileIndex: require('./compileIndex'),
+    copyHtaccess: require('./copyHtaccess'),
     copyPublicAssets: require('./copyPublicAssets'),
     env: require('./utils/env'),
     eslint: require('./eslint'),
