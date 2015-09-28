@@ -1,6 +1,6 @@
 {
   "name": "apptension-tools",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Common tools used in Apptension's projects",
   "main": "index.js",
   "scripts": {
