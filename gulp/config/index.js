@@ -64,7 +64,7 @@ function Config() {
 
   webpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'webpack.plugins', []));
 
-  var sassIncludePaths = [tmp].concat(_.get(_userConfig, 'sass.includePaths', []));
+  var sassIncludePaths = _.flattenDeep([tmp].concat(_.get(_userConfig, 'sass.includePaths', [])));
 
   return Object.freeze(_.defaultsDeep({
     sprity: {
