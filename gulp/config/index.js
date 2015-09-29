@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 var _userConfig = {};
 
@@ -21,10 +22,6 @@ function Config() {
   var environment = path.join(src, 'environment');
   var karmaPreprocessors = {};
   karmaPreprocessors[testIndex] = ['webpack', 'sourcemap'];
-
-  var webpackEntry = _.extend({
-    main: path.join(src, 'main.js')
-  }, _.get(_userConfig, 'webpack.entry', {}));
 
   var webpackLoaders = [
     {
@@ -61,12 +58,15 @@ function Config() {
 
   webpackLoaders = webpackLoaders.concat(_.get(_userConfig, 'webpack.module.loaders', []));
 
-  var webpackPlugins = [
+  var commonPlugins = [
     new ExtractTextPlugin(path.join(srcDirName, 'vendor.css'))
   ];
-  var karmaWebpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
-  webpackPlugins = webpackPlugins.concat(_.get(_userConfig, 'webpack.plugins', []));
+  var webpackPlugins = commonPlugins.concat([
+    new webpack.optimize.CommonsChunkPlugin('vendor', path.join(srcDirName, 'vendor.js'))
+  ]).concat(_.get(_userConfig, 'webpack.plugins', []));
+
+  var karmaWebpackPlugins = commonPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
   var sassIncludePaths = _.flattenDeep([tmp].concat(_.get(_userConfig, 'sass.includePaths', [])));
 
@@ -97,13 +97,17 @@ function Config() {
         test: path.join(environment, 'test.js')
       }
     },
-    webpack: {entry: webpackEntry, module: {loaders: webpackLoaders}, plugins: webpackPlugins},
+    webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
     karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}},
     sass: {
       includePaths: sassIncludePaths
     }
   }, _userConfig, {
     webpack: {
+      entry: {
+        main: path.join(src, 'main.js'),
+        vendor: path.join(src, 'vendor.js')
+      },
       output: {
         path: tmp,
         filename: srcDirName + '/[name].js'
