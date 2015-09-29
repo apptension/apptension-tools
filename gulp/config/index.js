@@ -22,6 +22,10 @@ function Config() {
   var karmaPreprocessors = {};
   karmaPreprocessors[testIndex] = ['webpack', 'sourcemap'];
 
+  var webpackEntry = _.extend({
+    main: path.join(src, 'main.js')
+  }, _.get(_userConfig, 'webpack.entry', {}));
+
   var webpackLoaders = [
     {
       test: /\.jsx?$/,
@@ -93,14 +97,13 @@ function Config() {
         test: path.join(environment, 'test.js')
       }
     },
-    webpack: {module: {loaders: webpackLoaders}, plugins: webpackPlugins},
+    webpack: {entry: webpackEntry, module: {loaders: webpackLoaders}, plugins: webpackPlugins},
     karma: {webpack: {module: {loaders: karmaWebpackLoaders}, plugins: karmaWebpackPlugins}},
     sass: {
       includePaths: sassIncludePaths
     }
   }, _userConfig, {
     webpack: {
-      entry: path.join(src, 'main.js'),
       output: {
         path: tmp,
         filename: srcDirName + '/[name].js'
