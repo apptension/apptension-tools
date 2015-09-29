@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+var SplitByPathPlugin = require('webpack-split-by-path');
 
 var _userConfig = {};
 
@@ -63,7 +63,11 @@ function Config() {
   ];
 
   var webpackPlugins = commonPlugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('vendor', path.join(srcDirName, 'vendor.js'))
+    new SplitByPathPlugin([{
+        name: 'vendor',
+        path: path.join(cwd, 'node_modules')
+      }]
+    )
   ]).concat(_.get(_userConfig, 'webpack.plugins', []));
 
   var karmaWebpackPlugins = commonPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
@@ -105,12 +109,12 @@ function Config() {
   }, _userConfig, {
     webpack: {
       entry: {
-        main: path.join(src, 'main.js'),
-        vendor: path.join(src, 'vendor.js')
+        main: path.join(src, 'main.js')
       },
       output: {
         path: tmp,
-        filename: srcDirName + '/[name].js'
+        filename: srcDirName + '/[name].js',
+        chunkFilename: srcDirName + "/[name].js"
       }
     },
 
