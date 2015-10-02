@@ -15,7 +15,7 @@ module.exports = function () {
 
   if (env.isProduction()) {
     imagesDest = config.paths.dist;
-    options.cachebuster = true;
+    options.cachebuster = false;
   }
 
   imagesDest = path.join(imagesDest, config.paths.spritesCss);
