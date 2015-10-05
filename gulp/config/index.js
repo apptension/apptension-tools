@@ -16,7 +16,8 @@ function Config() {
 
   var imagesDirName = 'images';
   var spritesDirName = 'sprites';
-  var sprites = path.join(app, imagesDirName, spritesDirName, '**/*.png');
+  var sprites = path.join(app, imagesDirName, spritesDirName, '*.png');
+  var retinaSprites = path.join(app, imagesDirName, spritesDirName, '*-2x.png');
   var spritesCssPath = path.join(imagesDirName, spritesDirName);
   var testIndex = path.resolve(app, 'spec', 'test.index.js');
   var environment = path.join(src, 'environment');
@@ -75,17 +76,14 @@ function Config() {
   var sassIncludePaths = _.flattenDeep([tmp].concat(_.get(_userConfig, 'sass.includePaths', [])));
 
   return Object.freeze(_.defaultsDeep({
-    sprity: {
-      src: sprites,
-      cssPath: '/' + spritesCssPath
-    },
     paths: {
       cwd: cwd,
       dist: dist,
       app: app,
       tmp: tmp,
       sass: path.join(app, '**/*.scss'),
-      sprity: sprites,
+      sprites: sprites,
+      retinaSprites: retinaSprites,
       spritesCss: spritesCssPath,
       eslint: src + '/**/*.js',
       index: path.join(app, 'index.hbs'),
@@ -137,19 +135,19 @@ function Config() {
       style: 'compact'
     },
 
-    sprity: {
-      style: 'sprites.scss',
-      processor: 'sprity-sass',
-      'style-type': 'scss',
-      dimension: [{
-        ratio: 1, dpi: 72
-      }, {
-        ratio: 2, dpi: 192
-      }],
-      prefix: 'icon',
-      split: true,
-      engine: 'sprity-gm'
-    },
+    //sprity: {
+    //  style: 'sprites.scss',
+    //  processor: 'sprity-sass',
+    //  'style-type': 'scss',
+    //  dimension: [{
+    //    ratio: 1, dpi: 72
+    //  }, {
+    //    ratio: 2, dpi: 192
+    //  }],
+    //  prefix: 'icon',
+    //  split: true,
+    //  engine: 'sprity-gm'
+    //},
 
     karma: {
       basePath: '',

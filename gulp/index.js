@@ -18,7 +18,7 @@ module.exports = function (_config) {
     livereload: require('./livereload'),
     rev: require('./rev'),
     sass: require('./sass'),
-    sprity: require('./sprity'),
+    spritesmith: require('./spritesmith'),
     webpack: require('./webpack')
   };
 };
