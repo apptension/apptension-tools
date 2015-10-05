@@ -25,8 +25,8 @@ module.exports = function () {
       retinaImgName: 'sprite-retina.png',
       retinaSrcFilter: config.paths.retinaSprites,
       cssName: 'sprites.scss',
-      imgPath: path.join('/', config.paths.spritesCss, 'sprite.png'),
-      retinaImgPath: path.join('/', config.paths.spritesCss, 'sprite-retina.png')
+      imgPath: '/' + config.paths.spritesCss.replace('\\', '/') + '/sprite.png',
+      retinaImgPath: '/' + config.paths.spritesCss.replace('\\', '/') + '/sprite-retina.png'
     }));
 
   // Pipe image stream through image optimizer and onto disk
