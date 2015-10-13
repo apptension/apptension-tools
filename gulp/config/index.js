@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var SplitByPathPlugin = require('webpack-split-by-path');
 
 var _userConfig = {};
 
@@ -45,6 +44,26 @@ function Config() {
     {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+    },
+    {
+      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/font-woff&name=public/fonts/[hash].woff"
+    },
+    {
+      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/font-woff&name=public/fonts/[hash].woff2"
+    },
+    {
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/octet-stream&name=public/fonts/[hash].ttf"
+    },
+    {
+      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "file?name=public/fonts/[hash].eot"
+    },
+    {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=image/svg+xml&name=public/fonts/[hash].svg"
     }
   ];
 
@@ -60,15 +79,10 @@ function Config() {
   webpackLoaders = webpackLoaders.concat(_.get(_userConfig, 'webpack.module.loaders', []));
 
   var commonPlugins = [
-    new ExtractTextPlugin(path.join(srcDirName, 'vendor.css'))
+    new ExtractTextPlugin(path.join('vendor-styles.css'))
   ];
 
   var webpackPlugins = commonPlugins.concat([
-    new SplitByPathPlugin([{
-        name: 'vendor',
-        path: path.join(cwd, 'node_modules')
-      }]
-    )
   ]).concat(_.get(_userConfig, 'webpack.plugins', []));
 
   var karmaWebpackPlugins = commonPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
@@ -155,7 +169,7 @@ function Config() {
       files: [testIndex],
       preprocessors: karmaPreprocessors,
       webpack: {
-        devtool: 'inline-source-map'
+        devtool: 'eval'
       },
       webpackMiddleware: {
         stats: {

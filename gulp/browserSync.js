@@ -13,7 +13,8 @@ module.exports = function () {
   } else {
     browserSync.init({
       proxy: config.domain + ':' + config.port,
-      ws: true
+      ws: true,
+      ui: false
     });
   }
 };

@@ -25,7 +25,8 @@ var statsOptions = {
 module.exports = function (watch) {
   return function (callback) {
     var webpackConfig = _.defaults({
-      devtool: 'inline-source-map'
+      devtool: 'eval',
+      watch: false
     }, config.webpack, {});
 
     var webpackDevServerConfig = _.defaults({
