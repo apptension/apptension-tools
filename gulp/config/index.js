@@ -27,7 +27,7 @@ function Config() {
   var webpackLoaders = [
     {
       test: /\.jsx?$/,
-      exclude: /node_modules|bower_components/,
+      exclude: /node_modules|bower_components|vendor_modules/,
       loader: 'babel'
     },
     {
@@ -113,6 +113,11 @@ function Config() {
         path: tmp,
         filename: srcDirName + '/[name].js',
         chunkFilename: srcDirName + "/[name].js"
+      },
+      resolve: {
+        alias: {
+          vendor_modules: path.join(cwd, 'vendor_modules')
+        }
       }
     },
 
@@ -134,20 +139,6 @@ function Config() {
       noCache: false,
       style: 'compact'
     },
-
-    //sprity: {
-    //  style: 'sprites.scss',
-    //  processor: 'sprity-sass',
-    //  'style-type': 'scss',
-    //  dimension: [{
-    //    ratio: 1, dpi: 72
-    //  }, {
-    //    ratio: 2, dpi: 192
-    //  }],
-    //  prefix: 'icon',
-    //  split: true,
-    //  engine: 'sprity-gm'
-    //},
 
     karma: {
       basePath: '',
