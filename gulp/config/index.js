@@ -82,8 +82,7 @@ function Config() {
     new ExtractTextPlugin(path.join('vendor-styles.css'))
   ];
 
-  var webpackPlugins = commonPlugins.concat([
-  ]).concat(_.get(_userConfig, 'webpack.plugins', []));
+  var webpackPlugins = commonPlugins.concat([]).concat(_.get(_userConfig, 'webpack.plugins', []));
 
   var karmaWebpackPlugins = commonPlugins.concat(_.get(_userConfig, 'karma.webpack.plugins', []));
 
@@ -160,7 +159,12 @@ function Config() {
       files: [testIndex],
       preprocessors: karmaPreprocessors,
       webpack: {
-        devtool: 'eval'
+        devtool: 'eval',
+        resolve: {
+          alias: {
+            vendor_modules: path.join(cwd, 'vendor_modules')
+          }
+        }
       },
       webpackMiddleware: {
         stats: {

@@ -33,8 +33,6 @@ module.exports = function (watch) {
       stats: statsOptions
     }, config.webpackDevServer, {});
 
-    webpackConfig.resolve = webpack.resolve || {};
-
     var jsConfig;
     if (env.isProduction()) {
       webpackConfig.devtool = false;
