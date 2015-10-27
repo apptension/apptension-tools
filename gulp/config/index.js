@@ -107,6 +107,7 @@ function Config() {
       htaccess: path.join(cwd, '.htaccess-prod'),
       publicAssets: publicAssets,
       jsConfig: {
+        environment: environment,
         development: path.join(environment, 'development.js'),
         production: path.join(environment, 'production.js'),
         test: path.join(environment, 'test.js')

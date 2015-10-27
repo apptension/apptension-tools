@@ -2,6 +2,7 @@ var _ = require('lodash');
 var webpack = require('webpack');
 var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
+var path = require('path');
 
 var config = require('./config')();
 var env = require('./utils/env');
@@ -39,10 +40,18 @@ module.exports = function (watch) {
       webpackConfig.plugins = webpackConfig.plugins.concat([
         new webpack.optimize.UglifyJsPlugin()
       ]);
-      jsConfig = config.paths.jsConfig.production;
-    } else {
-      jsConfig = config.paths.jsConfig.development
     }
+
+    if (gutil.env.env) {
+      jsConfig = path.join(config.paths.jsConfig.environment, gutil.env.env);
+    } else {
+      if (env.isProduction()) {
+        jsConfig = config.paths.jsConfig.production;
+      } else {
+        jsConfig = config.paths.jsConfig.development;
+      }
+    }
+
     _.set(webpackConfig, 'resolve.alias.env-config', jsConfig);
 
     var compiler = webpack(webpackConfig, function (err, stats) {
