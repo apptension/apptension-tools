@@ -99,7 +99,7 @@ function Config() {
       retinaSprites: retinaSprites,
       spritesCss: spritesCssPath,
       eslint: src + '/**/*.js',
-      index: path.join(app, 'index.hbs'),
+      index: path.join(app, '*.hbs'),
       images: [
         path.join(app, imagesDirName, '**/*.{png,jpg,gif,svg}'),
         '!' + sprites

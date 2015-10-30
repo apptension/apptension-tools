@@ -37,7 +37,7 @@ module.exports = function () {
       manifest: manifest,
       development: !env.isProduction()
     }, handlebarOpts))
-    .pipe(rename('index.html'));
+    .pipe(rename({extname: '.html'}));
 
   if (env.isProduction()) {
     stream = stream.pipe(gulp.dest(config.paths.dist));
