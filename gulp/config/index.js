@@ -91,6 +91,7 @@ function Config() {
   return Object.freeze(_.defaultsDeep({
     paths: {
       cwd: cwd,
+      backend: path.join(cwd, 'backend', '**/*'),
       dist: dist,
       app: app,
       tmp: tmp,
