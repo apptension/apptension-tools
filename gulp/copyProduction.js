@@ -1,9 +1,8 @@
 var gulp = require('gulp');
 var env = require('./utils/env');
-var debug = require('gulp-debug');
 var path = require('path');
 var _ = require('lodash');
-var gutil = require('gulp-util');
+var rename = require('gulp-rename');
 
 var config = require('./config');
 
@@ -15,6 +14,9 @@ module.exports = function () {
   });
 
   gulp.src(src)
-    .pipe(debug({title: 'copyProd'}))
+    .pipe(rename(function (path){
+      path.basename = path.basename.replace('.production', '');
+      path.extname = path.extname.replace('.production', '');
+    }))
     .pipe(gulp.dest(pathsConfig.paths.dist));
 };
