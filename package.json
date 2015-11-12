@@ -4,6 +4,8 @@
   "description": "Common tools used in Apptension's projects",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --require ./test/enable-power-assert",
+    "test:watch": "mocha --require ./test/enable-power-assert --watch",
     "release": "npm run release-patch",
     "release-patch": "git checkout master; git commit -a -m 'Build dist/'; npm version patch && git push origin master --tags && npm publish",
     "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish",
@@ -13,7 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^1.1.0",
-    "gulp-debug": "^2.1.0"
+    "espower-loader": "^1.0.0",
+    "gulp-debug": "^2.1.0",
+    "power-assert": "^1.1.0"
   },
   "peerDependencies": {
     "babel-core": "^5.8.22",

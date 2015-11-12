@@ -1,11 +1,14 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
+var path = require('path');
 
-var config = require('./config')();
+var config = require('./config');
 
 
 module.exports = function () {
-  return gulp.src(config.paths.eslint)
+  var pathsConfig = config.getPathsConfig();
+
+  return gulp.src(path.join(pathsConfig.paths.eslint, pathsConfig.filePatterns.eslint))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());

@@ -1,11 +1,13 @@
 var del = require('del');
 var gutil = require('gulp-util');
-var config = require('./config')();
+var config = require('./config');
 
 
 module.exports = function () {
+  var pathsConfig = config.getPathsConfig();
+
   del.sync([
-    config.paths.tmp,
-    config.paths.dist
+    pathsConfig.paths.tmp,
+    pathsConfig.paths.dist
   ]);
 };

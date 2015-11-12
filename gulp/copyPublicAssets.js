@@ -3,20 +3,21 @@ var env = require('./utils/env');
 var path = require('path');
 var merge = require('merge-stream');
 
-var config = require('./config')();
+var config = require('./config');
 
 module.exports = function () {
-  var dest = env.isDevelopment() ? config.paths.tmp : config.paths.dist;
+  var pathsConfig = config.getPathsConfig();
+  var dest = env.isDevelopment() ? pathsConfig.paths.tmp : pathsConfig.paths.dist;
 
-  var src = [config.paths.publicAssets];
+  var src = [path.join(pathsConfig.paths.public, pathsConfig.filePatterns.public)];
 
   if (env.isProduction()) {
     src = src.concat([
-      path.join(config.paths.tmp, 'public/**/*')
+      path.join(pathsConfig.paths.tmp, pathsConfig.dirNames.public, pathsConfig.filePatterns.public)
     ]);
   }
 
   gulp.src(src)
-    .pipe(gulp.dest(path.join(dest, 'public')));
+    .pipe(gulp.dest(path.join(dest, pathsConfig.dirNames.public)));
 
 };

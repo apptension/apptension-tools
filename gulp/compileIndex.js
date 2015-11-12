@@ -4,14 +4,15 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var handlebars = require('gulp-compile-handlebars');
 var rename = require('gulp-rename');
-var livereload = require('gulp-livereload');
 
 var browserSync = require('./utils/browserSyncInstance');
 var env = require('./utils/env');
 
-var config = require('./config')();
+var config = require('./config');
 
 module.exports = function () {
+  var pathsConfig = config.getPathsConfig();
+
   var handlebarOpts = {
     helpers: {
       assetPath: function (_path, context) {
@@ -23,7 +24,7 @@ module.exports = function () {
     }
   };
   var manifest;
-  var manifestPath = path.join(config.paths.tmp, 'rev-manifest.json');
+  var manifestPath = path.join(pathsConfig.paths.tmp, pathsConfig.filePatterns.revManifest);
   try {
     var manifestStats = fs.statSync(manifestPath);
     if (manifestStats.isFile()) {
@@ -32,7 +33,7 @@ module.exports = function () {
   } catch (ignore) {
   }
 
-  var stream = gulp.src(config.paths.index)
+  var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index))
     .pipe(handlebars({
       manifest: manifest,
       development: !env.isProduction()
@@ -40,10 +41,10 @@ module.exports = function () {
     .pipe(rename({extname: '.html'}));
 
   if (env.isProduction()) {
-    stream = stream.pipe(gulp.dest(config.paths.dist));
+    stream = stream.pipe(gulp.dest(pathsConfig.paths.dist));
   } else {
-    stream = stream.pipe(gulp.dest(config.paths.tmp));
+    stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
   }
 
-  return stream.pipe(livereload()).pipe(browserSync.stream());
+  return stream.pipe(browserSync.stream());
 };

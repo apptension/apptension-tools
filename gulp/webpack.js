@@ -4,35 +4,21 @@ var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 
-var config = require('./config')();
+var config = require('./config');
 var env = require('./utils/env');
 
-var statsOptions = {
-  colors: gutil.colors.supportsColor,
-  hash: false,
-  timings: false,
-  chunks: false,
-  chunkModules: false,
-  modules: false,
-  children: true,
-  version: true,
-  cached: false,
-  cachedAssets: false,
-  reasons: false,
-  source: false,
-  errorDetails: false
-};
 
 module.exports = function (watch) {
+  var pathsConfig = config.getPathsConfig();
+  var serverConfig = config.getServerConfig();
+  var webpackConfig = config.getWebpackConfig();
+  var webpackDevServerConfig = config.getWebpackDevServerConfig();
+
   return function (callback) {
-    var webpackConfig = _.defaults({
+    webpackConfig = _.defaults({
       devtool: 'eval',
       watch: false
-    }, config.webpack, {});
-
-    var webpackDevServerConfig = _.defaults({
-      stats: statsOptions
-    }, config.webpackDevServer, {});
+    }, webpackConfig, {});
 
     var jsConfig;
     if (env.isProduction()) {
@@ -43,12 +29,12 @@ module.exports = function (watch) {
     }
 
     if (gutil.env.env) {
-      jsConfig = path.join(config.paths.jsConfig.environment, gutil.env.env);
+      jsConfig = path.join(pathsConfig.paths.environment, gutil.env.env);
     } else {
       if (env.isProduction()) {
-        jsConfig = config.paths.jsConfig.production;
+        jsConfig = path.join(pathsConfig.paths.environment, pathsConfig.environmentScripts.production);
       } else {
-        jsConfig = config.paths.jsConfig.development;
+        jsConfig = path.join(pathsConfig.paths.environment, pathsConfig.environmentScripts.development);
       }
     }
 
@@ -58,13 +44,13 @@ module.exports = function (watch) {
       if (err) {
         throw new gutil.PluginError('webpack', err);
       }
-      gutil.log(stats.toString(statsOptions));
+      gutil.log(stats.toString(webpackDevServerConfig.stats));
       callback();
     });
 
     if (watch) {
       var server = new WebpackDevServer(compiler, webpackDevServerConfig);
-      server.listen(config.port, config.domain);
+      server.listen(serverConfig.port, serverConfig.domain);
     }
   };
 };

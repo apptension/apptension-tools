@@ -6,27 +6,29 @@ var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
 
 var env = require('./utils/env');
-var config = require('./config')();
+var config = require('./config');
 
 
 module.exports = function () {
-  var imagesDest = config.paths.tmp;
-  var styleDest = config.paths.tmp;
+  var pathsConfig = config.getPathsConfig();
+
+  var imagesDest = pathsConfig.paths.tmp;
+  var styleDest = pathsConfig.paths.tmp;
 
   if (env.isProduction()) {
-    imagesDest = config.paths.dist;
+    imagesDest = pathsConfig.paths.dist;
   }
 
-  imagesDest = path.join(imagesDest, config.paths.spritesCss);
+  imagesDest = path.join(imagesDest, pathsConfig.dirNames.images, pathsConfig.dirNames.sprites);
 
-  var spriteData = gulp.src(config.paths.sprites)
+  var spriteData = gulp.src(path.join(pathsConfig.paths.sprites, pathsConfig.filePatterns.sprites))
     .pipe(spritesmith({
       imgName: 'sprite.png',
       retinaImgName: 'sprite-retina.png',
-      retinaSrcFilter: config.paths.retinaSprites,
+      retinaSrcFilter: path.join(pathsConfig.paths.sprites, pathsConfig.filePatterns.retinaSprites),
       cssName: 'sprites.scss',
-      imgPath: '/' + config.paths.spritesCss.replace('\\', '/') + '/sprite.png',
-      retinaImgPath: '/' + config.paths.spritesCss.replace('\\', '/') + '/sprite-retina.png'
+      imgPath: '/' + pathsConfig.dirNames.images + '/' + pathsConfig.dirNames.sprites + '/sprite.png',
+      retinaImgPath: '/' + pathsConfig.dirNames.images + '/' + pathsConfig.dirNames.sprites + '/sprite-retina.png'
     }));
 
   // Pipe image stream through image optimizer and onto disk

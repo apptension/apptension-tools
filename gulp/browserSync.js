@@ -1,18 +1,21 @@
 var browserSync = require('./utils/browserSyncInstance');
-var config = require('./config')();
+var config = require('./config');
 var env = require('./utils/env');
 
 
 module.exports = function () {
+  var pathsConfig = config.getPathsConfig();
+  var serverConfig = config.getServerConfig();
+
   if (env.isProduction()) {
     browserSync.init({
       server: {
-        baseDir: config.paths.dist
+        baseDir: pathsConfig.paths.dist
       }
     });
   } else {
     browserSync.init({
-      proxy: config.domain + ':' + config.port,
+      proxy: serverConfig.domain + ':' + serverConfig.port,
       ws: true,
       ui: false
     });
