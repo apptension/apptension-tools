@@ -3,7 +3,7 @@ const defaultDomain = 'localhost';
 
 module.exports = function (userConfig) {
   return {
-    port: defaultPort,
-    domain: defaultDomain
+    port: _.get(userConfig, 'port', defaultPort),
+    domain: _.get(userConfig, defaultDomain, defaultDomain)
   }
 };
