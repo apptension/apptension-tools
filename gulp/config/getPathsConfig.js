@@ -19,6 +19,7 @@ module.exports = function (userConfig) {
   };
 
   var filePatterns = {
+    backend: '**/*',
     sprites: '*.png',
     retinaSprites: '*-2x.png',
     testIndex: 'test.index.js',
