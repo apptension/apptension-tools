@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 const defaultPort = 8000;
 const defaultDomain = 'localhost';
 
