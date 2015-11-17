@@ -2,7 +2,13 @@
   "name": "apptension-tools",
   "version": "2.0.6",
   "description": "Common tools used in Apptension's projects",
+  "repository": "https://github.com/apptension/apptension-tools.git",
   "main": "index.js",
+  "keywords": [
+    "apptension",
+    "gulp",
+    "apptension-tools"
+  ],
   "scripts": {
     "test": "mocha --require ./test/enable-power-assert",
     "test:watch": "mocha --require ./test/enable-power-assert --watch",
@@ -11,7 +17,10 @@
     "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish",
     "release-major": "git checkout master; git commit -a -m 'Build dist/'; npm version major && git push origin master --tags && npm publish"
   },
-  "author": "Apptension",
+  "author": {
+    "name": "Patryk Ziemkowski",
+    "email": "pziemkowski@apptension.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "eslint": "^1.1.0",
