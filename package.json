@@ -69,11 +69,8 @@
     "karma-webpack": "^1.7.0",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
-    "npm": "^2.13.5",
-    "object-assign": "^3.0.0",
     "phantomjs": "^1.9.18",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1",
-    "webpack-split-by-path": "^0.0.6"
+    "webpack-dev-server": "^1.10.1"
   }
 }
