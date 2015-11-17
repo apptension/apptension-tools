@@ -20,13 +20,18 @@ module.exports = function (watch) {
       watch: false
     }, webpackConfig, {});
 
-    var jsConfig;
+    var jsConfig, debug;
     if (env.isProduction()) {
       webpackConfig.devtool = false;
-      webpackConfig.plugins = webpackConfig.plugins.concat([
-        new webpack.optimize.UglifyJsPlugin()
-      ]);
+      webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
+      debug = false;
+    } else {
+      debug = true;
     }
+
+    webpackConfig.plugins.push(new webpack.DefinePlugin({
+      __DEBUG__: debug
+    }));
 
     if (gutil.env.env) {
       jsConfig = path.join(pathsConfig.paths.environment, gutil.env.env);
