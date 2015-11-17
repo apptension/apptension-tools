@@ -190,6 +190,32 @@ as it is the fastest option.
 
 Additionally uglifies the script.
 
+### __DEBUG__
+
+Webpack task uses [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin)
+to set `__DEBUG__` variable. It allows you to include specific blocks of code only
+in development bundle.
+
+###### Development
+
+```js
+
+if(__DEBUG__) {
+    // this will be included in development bundle
+}
+
+```
+
+###### Production
+
+```js
+
+if(__DEBUG__) {
+    // this will not be included in production bundle
+}
+
+```
+
 ## Known issues
 
 * As of now due to a bug in autoprefixer sourcemaps for sass are not generated.
