@@ -24,6 +24,7 @@ module.exports = function (watch) {
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
+      webpackConfig.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
       debug = false;
     } else {
       debug = true;
