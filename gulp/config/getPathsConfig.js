@@ -39,7 +39,9 @@ module.exports = function (userConfig) {
     rev: [
       '**/*.js',
       '**/*.css'
-    ]
+    ],
+    zip: '**/*',
+    zipOutput: 'dist.zip'
   };
 
   var environmentScripts = {
