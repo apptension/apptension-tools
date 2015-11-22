@@ -1,6 +1,5 @@
 var _ = require('lodash');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var getPathsConfig = require('./getPathsConfig');
 var getServerConfig = require('./getServerConfig');
 var getKarmaConfig = require('./getKarmaConfig');
