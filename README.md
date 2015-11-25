@@ -4,14 +4,14 @@
 
 What is `apptension-tools`?
 
-* is an opinionated set of tools used by Apptension for development
-* is a way to unify infrastructure between various projects
-* contains predefined gulp tasks
-* contains predefined webpack configuration
-* uses eslint to lint your code
-* allows you to write in ES6 out of the box
-* reduces time necessary to bootstrap your project
-* includes multi-environment support
+* is an opinionated set of tools used by Apptension for development,
+* is a way to unify infrastructure between various projects,
+* contains predefined gulp tasks,
+* contains predefined webpack configuration,
+* uses eslint to lint your code,
+* allows you to write in ES6 out of the box,
+* reduces time necessary to bootstrap your project,
+* includes multi-environment support.
 
 
 ## Predefined Gulp tasks
@@ -237,12 +237,14 @@ var tasks = require('apptension-tools/gulp')({
 #### port
 
 type: `number`
-Default: `8000`
+
+Default: '8000'
 
 Port of webpack dev server.
 
 #### domain
 type: 'string'
+
 Default: '0.0.0.0'
 
 Domain of webpack dev server.
