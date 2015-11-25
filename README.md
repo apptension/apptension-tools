@@ -190,7 +190,7 @@ as it is the fastest option.
 
 Additionally uglifies the script.
 
-### __DEBUG__
+#### \_\_DEBUG\_\_
 
 Webpack task uses [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin)
 to set `__DEBUG__` variable. It allows you to include specific blocks of code only
