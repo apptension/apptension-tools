@@ -6,6 +6,6 @@ const defaultDomain = '0.0.0.0';
 module.exports = function (userConfig) {
   return {
     port: _.get(userConfig, 'port', defaultPort),
-    domain: _.get(userConfig, 'defaultDomain', defaultDomain)
+    domain: _.get(userConfig, 'domain', defaultDomain)
   }
 };

@@ -199,22 +199,62 @@ in development bundle.
 ###### Development
 
 ```js
-
 if(__DEBUG__) {
     // this will be included in development bundle
 }
-
 ```
 
 ###### Production
 
 ```js
-
 if(__DEBUG__) {
     // this will not be included in production bundle
 }
-
 ```
+
+## Configure tasks
+
+Tasks can be configured through Gulpfile.
+
+```js
+var tasks = require('apptension-tools/gulp')({
+    // insert config options here
+});
+```
+
+### Options
+
+#### port
+
+type: `number`
+Default: `8000`
+
+Port of webpack dev server.
+
+#### domain
+type: 'string'
+Default: '0.0.0.0'
+
+Domain of webpack dev server.
+
+#### webpack
+type: 'Object'
+
+`webpack` configuration object. Check webpack's [documentation](https://webpack.github.io/docs/configuration.html) for complete option's list.
+
+#### webpackDevServer
+type: 'Object'
+
+`webpack-dev-server` configuration object. Check webpack's [documentation](https://webpack.github.io/docs/webpack-dev-server.html)' for complete option's list.
+
+#### sass
+type: 'Object'
+
+`node-sass` configuration object. Check [github page](https://github.com/sass/node-sass) for complete option's list.
+
+#### karma
+
+`gulp-karma` configuration object. Check  [github page](https://github.com/karma-runner/gulp-karma) for complete option's list.
 
 ## Known issues
 
