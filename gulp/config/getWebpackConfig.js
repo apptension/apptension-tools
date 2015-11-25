@@ -4,7 +4,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var getPathsConfig = require('./getPathsConfig');
 
-
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
 
@@ -14,6 +13,11 @@ module.exports = function (userConfig) {
       test: /\.jsx?$/,
       exclude: /node_modules|bower_components|vendor_modules/,
       loader: 'babel'
+    },
+    {
+      test: /\.tsx?$/,
+      exclude: /node_modules|bower_components|vendor_modules/,
+      loader: 'ts-loader'
     },
     {
       test: /\.html$/,
@@ -74,6 +78,7 @@ module.exports = function (userConfig) {
       chunkFilename: pathsConfig.dirNames.src + "/[name].js"
     },
     resolve: {
+      extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
       alias: {
         vendor_modules: pathsConfig.paths.vendorModules
       }
