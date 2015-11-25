@@ -212,6 +212,16 @@ if(__DEBUG__) {
 }
 ```
 
+### zip
+
+###### Development
+
+Not applicable.
+
+###### Production
+
+Compresses `dist` directory to `dist.zip`.
+
 ## Configure tasks
 
 Tasks can be configured through Gulpfile.
