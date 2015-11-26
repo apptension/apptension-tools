@@ -15,10 +15,6 @@ module.exports = function () {
   var imagesDest = pathsConfig.paths.tmp;
   var styleDest = pathsConfig.paths.tmp;
 
-  if (env.isProduction()) {
-    imagesDest = pathsConfig.paths.dist;
-  }
-
   imagesDest = path.join(imagesDest, pathsConfig.dirNames.images, pathsConfig.dirNames.sprites);
 
   var spriteData = gulp.src(path.join(pathsConfig.paths.sprites, pathsConfig.filePatterns.sprites))

@@ -16,6 +16,7 @@ module.exports = function (_config) {
     images: require('./images'),
     karma: require('./karma'),
     rev: require('./rev'),
+    revReplace: require('./revReplace'),
     sass: require('./sass'),
     spritesmith: require('./spritesmith'),
     webpack: require('./webpack'),

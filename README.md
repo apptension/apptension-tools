@@ -43,13 +43,11 @@ It supports multiple entry points.
 
 ###### Development
 
-Injects webpack dev server script. `assetPath` helper works as
-an identity function.
+Injects webpack dev server script.
 
 ###### Production
 
-Using the `assetPath` helper it replaces specified file name with
-the one present in rev manifest produced by Rev task.
+Removes development scripts.
 
 ### CopyBackend
 
@@ -107,7 +105,6 @@ Launches karma server in `test` environment.
 
 ### Rev
 
-
 ###### Development
 
 Not applicable.
@@ -117,6 +114,16 @@ Not applicable.
 Appends random hash to styles and scripts filenames in order to
 bust browser's cache on subsequent deploys. It generates rev manifest file
 that is later used by CompileIndex task. Outputs files to `dist` directory.
+
+### Rev-replace
+
+###### Development
+
+Not applicable.
+
+###### Production
+
+Replaces all paths to assets in `.html`, `.js` and `.css` files with those produced by `rev` task.
 
 ### Sass
 

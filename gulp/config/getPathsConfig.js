@@ -25,7 +25,7 @@ module.exports = function (userConfig) {
     testIndex: 'test.index.js',
     eslint: '**/*.js',
     index: '*.hbs',
-    images: '**/*.{png,jpg,gif,svg}',
+    images: '*.{png,jpg,gif,svg}',
     styles: '**/*.scss',
     revManifest: 'rev-manifest.json',
     vendorStyles: 'vendor-styles.css',
@@ -38,7 +38,21 @@ module.exports = function (userConfig) {
     ],
     rev: [
       '**/*.js',
-      '**/*.css'
+      '**/*.css',
+      '**/*.png',
+      '**/*.jpg',
+      '**/*.json',
+      '**/*.svg',
+      '**/*.gif',
+      '**/*.woff2',
+      '**/*.woff',
+      '**/*.ttf',
+      '**/*.eot'
+    ],
+    revReplace: [
+      '**/*.js',
+      '**/*.css',
+      '*.html'
     ],
     zip: '**/*',
     zipOutput: 'dist.zip'

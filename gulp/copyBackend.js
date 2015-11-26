@@ -11,6 +11,6 @@ module.exports = function () {
     return;
   }
 
-  gulp.src([path.join(pathsConfig.paths.backend, pathsConfig.filePatterns.backend)])
+  return gulp.src([path.join(pathsConfig.paths.backend, pathsConfig.filePatterns.backend)])
     .pipe(gulp.dest(path.join(pathsConfig.paths.dist, pathsConfig.dirNames.backend)));
 };

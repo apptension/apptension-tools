@@ -13,16 +13,6 @@ var config = require('./config');
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();
 
-  var handlebarOpts = {
-    helpers: {
-      assetPath: function (_path, context) {
-        if (env.isProduction()) {
-          return context.data.root.manifest[_path];
-        }
-        return _path;
-      }
-    }
-  };
   var manifest;
   var manifestPath = path.join(pathsConfig.paths.tmp, pathsConfig.filePatterns.revManifest);
   try {
@@ -37,7 +27,7 @@ module.exports = function () {
     .pipe(handlebars({
       manifest: manifest,
       development: !env.isProduction()
-    }, handlebarOpts))
+    }))
     .pipe(rename({extname: '.html'}));
 
   if (env.isProduction()) {

@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var rev = require('gulp-rev');
-var env = require('./utils/env');
+var merge = require('gulp-merge');
 
+var env = require('./utils/env');
 var config = require('./config');
+
 
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();

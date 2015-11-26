@@ -13,7 +13,7 @@ module.exports = function () {
     return path.join(pathsConfig.paths.cwd, filePattern);
   });
 
-  gulp.src(src)
+  return gulp.src(src)
     .pipe(rename(function (path){
       path.basename = path.basename.replace('.production', '');
       path.extname = path.extname.replace('.production', '');

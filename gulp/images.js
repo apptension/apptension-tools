@@ -18,11 +18,8 @@ module.exports = function () {
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
         use: [pngquant()]
-      }))
-      .pipe(gulp.dest(pathsConfig.paths.dist));
-  } else {
-    stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
+      }));
   }
 
-  return stream;
+  return stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 };
