@@ -1,4 +1,5 @@
-# apptension-tools
+# apptension-tools [![Build Status](https://secure.travis-ci.org/apptension/apptension-tools.png?branch=master)](https://travis-ci.org/apptension/apptension-tools)
+
 
 ## Description
 
