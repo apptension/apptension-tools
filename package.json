@@ -26,6 +26,7 @@
     "eslint": "^1.1.0",
     "espower-loader": "^1.0.0",
     "gulp-debug": "^2.1.0",
+    "mocha": "^2.3.4",
     "power-assert": "^1.1.0"
   },
   "peerDependencies": {
