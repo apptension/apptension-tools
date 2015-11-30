@@ -19,7 +19,7 @@ module.exports = function () {
     development: !env.isProduction()
   };
   var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index))
-    .pipe(handlebars({}, handlebarsConfig))
+    .pipe(handlebars(templateData, handlebarsConfig))
     .pipe(rename({extname: '.html'}));
 
   if (env.isProduction()) {
