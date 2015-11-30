@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var gulp = require('gulp');
@@ -12,22 +13,13 @@ var config = require('./config');
 
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();
+  var handlebarsConfig = config.getHandlebarsConfig();
 
-  var manifest;
-  var manifestPath = path.join(pathsConfig.paths.tmp, pathsConfig.filePatterns.revManifest);
-  try {
-    var manifestStats = fs.statSync(manifestPath);
-    if (manifestStats.isFile()) {
-      manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    }
-  } catch (ignore) {
-  }
-
+  var templateData = {
+    development: !env.isProduction()
+  };
   var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index))
-    .pipe(handlebars({
-      manifest: manifest,
-      development: !env.isProduction()
-    }))
+    .pipe(handlebars({}, handlebarsConfig))
     .pipe(rename({extname: '.html'}));
 
   if (env.isProduction()) {

@@ -7,6 +7,7 @@ var getWebpackConfig = require('./getWebpackConfig');
 var getRevManifestConfig = require('./getRevManifestConfig');
 var getSassConfig = require('./getSassConfig');
 var getWebpackDevServerConfig = require('./getWebpackDevServerConfig');
+var getHandlebarsConfig = require('./getHandlebarsConfig');
 
 
 var _userConfig = {};
@@ -43,6 +44,10 @@ module.exports.getSassConfig = function () {
 
 module.exports.getWebpackDevServerConfig = function () {
   return getWebpackDevServerConfig(_userConfig)
+};
+
+module.exports.getHandlebarsConfig = function () {
+  return getHandlebarsConfig(_userConfig);
 };
 
 Object.defineProperty(module.exports, 'watchPaths', {

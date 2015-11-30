@@ -15,7 +15,8 @@ module.exports = function (userConfig) {
     backend: 'backend',
     vendorModules: 'vendor_modules',
     fonts: 'fonts',
-    spec: 'spec'
+    spec: 'spec',
+    handlebarsPartials: 'hbs-partials'
   };
 
   var filePatterns = {
@@ -75,6 +76,7 @@ module.exports = function (userConfig) {
   var specPath = path.join(appPath, dirNames.spec);
   var publicPath = path.join(appPath, dirNames.public);
   var srcPath = path.join(appPath, dirNames.src);
+  var handlebarsPartialsPath = path.join(appPath, dirNames.handlebarsPartials);
   var fontsPath = path.join(publicPath, dirNames.fonts);
   var environmentPath = path.join(srcPath, dirNames.environment);
 
@@ -96,7 +98,8 @@ module.exports = function (userConfig) {
       vendorModules: vendorModulesPath,
       fonts: fontsPath,
       environment: environmentPath,
-      spec: specPath
+      spec: specPath,
+      handlebarsPartials: handlebarsPartialsPath
     }
   };
 };
