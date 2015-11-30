@@ -55,7 +55,7 @@ Object.defineProperty(module.exports, 'watchPaths', {
     var pathsConfig = getPathsConfig(_userConfig);
 
     return {
-      index: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index),
+      index: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.indexWatch),
       sass: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.styles),
       eslint: path.join(pathsConfig.paths.eslint, pathsConfig.filePatterns.eslint),
       sprites: path.join(pathsConfig.paths.sprites, pathsConfig.filePatterns.sprites),

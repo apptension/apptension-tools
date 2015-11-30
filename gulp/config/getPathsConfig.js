@@ -26,6 +26,7 @@ module.exports = function (userConfig) {
     testIndex: 'test.index.js',
     eslint: '**/*.js',
     index: '*.hbs',
+    indexWatch: '**/*.hbs',
     images: '*.{png,jpg,gif,svg}',
     styles: '**/*.scss',
     revManifest: 'rev-manifest.json',
