@@ -10,7 +10,7 @@ module.exports = function (userConfig) {
 
   return _.defaultsDeep(_.get(userConfig, 'handlebars', {}), {
     batch: [
-      pathsConfig.paths.handlebarsPartials
+      './' + pathsConfig.dirNames.app + '/' + pathsConfig.dirNames.handlebarsPartials
     ]
   })
 };
