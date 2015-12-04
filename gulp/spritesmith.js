@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var path = require('path');
-var gulpif = require('gulp-if');
 var _ = require('lodash');
 var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
