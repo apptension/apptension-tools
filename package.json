@@ -57,7 +57,6 @@
     "gutil": "^1.6.4",
     "html-loader": "^0.3.0",
     "imagemin-pngquant": "^4.1.2",
-    "install": "^0.1.8",
     "isparta-loader": "^0.2.0",
     "jasmine": "^2.3.2",
     "jasmine-core": "^2.3.4",
