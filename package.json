@@ -33,6 +33,7 @@
     "babel-core": "^6.3.13",
     "babel-eslint": "^5.0.0-beta4",
     "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
     "browser-sync": "^2.8.2",
     "del": "^2.1.0",
     "event-stream": "^3.3.1",
