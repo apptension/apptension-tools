@@ -15,6 +15,6 @@ module.exports = function () {
   }
 
   return gulp.src(pathsConfig.filePatterns.revReplace, {cwd: pathsConfig.paths.dist})
-    .pipe(revReplace({manifest: manifest}))
+    .pipe(revReplace({manifest: manifest, replaceInExtensions: ['.js', '.css', '.html', '.hbs', '.json']}))
     .pipe(gulp.dest(pathsConfig.paths.dist));
 };
