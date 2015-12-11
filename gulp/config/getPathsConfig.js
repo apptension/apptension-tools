@@ -53,6 +53,7 @@ module.exports = function (userConfig) {
     ],
     revReplace: [
       '**/*.js',
+      '**/*.json',
       '**/*.css',
       '*.html'
     ],
