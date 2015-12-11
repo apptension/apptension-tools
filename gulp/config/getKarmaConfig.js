@@ -28,7 +28,14 @@ module.exports = function (userConfig) {
       module: {
         loaders: webpackLoaders
       },
-      plugins: webpackPlugins
+      plugins: webpackPlugins,
+      isparta: {
+        embedSource: true,
+        noAutoWrap: true,
+        babel: {
+          presets: ['es2015', 'stage-0', 'react']
+        }
+      }
     }
   }, _.get(userConfig, 'karma', {}), {
     basePath: '',
