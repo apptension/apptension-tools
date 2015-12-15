@@ -8,15 +8,21 @@ var config = require('./config');
 
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();
-  var revManifestConfig = config.getRevManifestConfig();
+  var revConfig = config.getRevManifestConfig();
 
   if (!env.isProduction()) {
     return;
   }
 
-  return gulp.src(pathsConfig.filePatterns.rev, {cwd: pathsConfig.paths.tmp})
-    .pipe(rev())
-    .pipe(gulp.dest(pathsConfig.paths.dist))
-    .pipe(rev.manifest(revManifestConfig))
-    .pipe(gulp.dest(pathsConfig.paths.tmp));
+  var stream = gulp.src(pathsConfig.filePatterns.rev, {cwd: pathsConfig.paths.tmp});
+  if (revConfig.enabled) {
+    stream = stream.pipe(rev())
+  }
+  stream = stream.pipe(gulp.dest(pathsConfig.paths.dist));
+
+  if (revConfig.enabled) {
+    stream = stream.pipe(rev.manifest(revConfig.manifest));
+  }
+
+  return stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 };
