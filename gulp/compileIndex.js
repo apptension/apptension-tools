@@ -2,7 +2,6 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var handlebars = require('gulp-compile-handlebars');
 var rename = require('gulp-rename');
 
