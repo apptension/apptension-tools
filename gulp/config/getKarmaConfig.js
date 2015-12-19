@@ -31,10 +31,7 @@ module.exports = function (userConfig) {
       plugins: webpackPlugins,
       isparta: {
         embedSource: true,
-        noAutoWrap: true,
-        babel: {
-          presets: ['es2015', 'stage-0', 'react']
-        }
+        noAutoWrap: true
       }
     }
   }, _.get(userConfig, 'karma', {}), {
