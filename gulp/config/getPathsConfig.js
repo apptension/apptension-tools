@@ -52,6 +52,7 @@ module.exports = function (userConfig) {
       '**/*.eot'
     ],
     revReplace: [
+      '!backend/**/*',
       '**/*.js',
       '**/*.json',
       '**/*.css',
