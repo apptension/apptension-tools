@@ -10,7 +10,7 @@ module.exports = function (userConfig) {
   var webpackConfig = getWebpackConfig(userConfig);
 
   var testIndex = path.resolve(pathsConfig.paths.spec, pathsConfig.filePatterns.testIndex);
-  var karmaPreprocessors = {};
+  var karmanprocessors = {};
   karmaPreprocessors[testIndex] = ['webpack', 'sourcemap'];
 
   var webpackPlugins = webpackConfig.plugins;
