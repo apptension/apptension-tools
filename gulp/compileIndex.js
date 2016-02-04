@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var gulp = require('gulp');
