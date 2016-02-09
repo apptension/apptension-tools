@@ -49,7 +49,10 @@ module.exports = function (userConfig) {
       '**/*.woff2',
       '**/*.woff',
       '**/*.ttf',
-      '**/*.eot'
+      '**/*.eot',
+      '**/*.mp4',
+      '**/*.webm',
+      '**/*.mov'
     ],
     revReplace: [
       '!backend/**/*',
