@@ -27,7 +27,7 @@ module.exports = function (userConfig) {
     eslint: '**/*.js',
     index: '*.hbs',
     indexWatch: '**/*.hbs',
-    images: '*.{png,jpg,gif,svg,ico}',
+    images: '**/*.{png,jpg,gif,svg,ico}',
     styles: '**/*.scss',
     revManifest: 'rev-manifest.json',
     vendorStyles: 'vendor-styles.css',
