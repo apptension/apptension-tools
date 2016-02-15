@@ -14,9 +14,16 @@ module.exports = function () {
   var pathsConfig = config.getPathsConfig();
   var handlebarsConfig = config.getHandlebarsConfig();
 
+  var confEnv = gutil.env.env;
+  if (!confEnv) {
+    confEnv = env.isProduction() ? pathsConfig.environmentScripts.production : pathsConfig.environmentScripts.development;
+    confEnv = confEnv.replace('.js', '');
+  }
   var templateData = {
     development: !env.isProduction(),
-    configType: gutil.env.env || (env.isProduction() ? 'production' : 'development')
+    stagingConf: confEnv === 'staging',
+    developmentConf: confEnv === 'development',
+    productionConf: confEnv === 'production'
   };
   var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index))
     .pipe(handlebars(templateData, handlebarsConfig))
