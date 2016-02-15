@@ -14,7 +14,8 @@ module.exports = function () {
   var handlebarsConfig = config.getHandlebarsConfig();
 
   var templateData = {
-    development: !env.isProduction()
+    development: !env.isProduction(),
+    configType: gutil.env.env || (env.isProduction() ? 'production' : 'development')
   };
   var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.index))
     .pipe(handlebars(templateData, handlebarsConfig))
