@@ -3,6 +3,7 @@ var fs = require('fs');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
 var rename = require('gulp-rename');
+var gutil = require('gulp-util');
 
 var browserSync = require('./utils/browserSyncInstance');
 var env = require('./utils/env');
