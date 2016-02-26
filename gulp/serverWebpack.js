@@ -15,28 +15,39 @@ module.exports = function (watch) {
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
 
   return function (callback) {
-    webpackConfig = _.defaults({
+    webpackConfig = _.defaultsDeep({
+      cache:   false,
+      context: __dirname,
       devtool: 'eval',
-      watch: false
+      watch: false,
+      target:  'node'
     }, webpackConfig, {
       entry: {
-        main: path.join(pathsConfig.paths.src, pathsConfig.filePatterns.mainScript)
+        server: path.join(pathsConfig.paths.src, pathsConfig.filePatterns.serverScript)
       },
       output: {
-        path: pathsConfig.paths.tmp,
+        path: pathsConfig.paths.dist,
         filename: pathsConfig.dirNames.src + '/[name].js',
         chunkFilename: pathsConfig.dirNames.src + "/[name].js"
+      },
+      node: {
+        __dirname: true,
+        fs: "empty",
+        net: "empty",
+        tls: "empty"
+      },
+      module: {
+        noParse: /node_modules\/json-schema\/lib\/validate\.js/
       }
     });
 
     var jsConfig, debug = true;
     if (env.isProduction()) {
       webpackConfig.devtool = false;
-      webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
       debug = false;
     }
 
-    webpackConfig.plugins.push(new webpack.DefinePlugin({__DEBUG__: debug, __CLIENT__: true, __SERVER__: false}));
+    webpackConfig.plugins.push(new webpack.DefinePlugin({__DEBUG__: debug, __CLIENT__: false, __SERVER__: true}));
 
     if (gutil.env.env) {
       jsConfig = path.join(pathsConfig.paths.environment, gutil.env.env);
@@ -59,8 +70,12 @@ module.exports = function (watch) {
     });
 
     if (watch) {
-      var server = new WebpackDevServer(compiler, webpackDevServerConfig);
-      server.listen(serverConfig.port, serverConfig.domain);
+      compiler.watch({}, function (err, stats) {
+        if (err) {
+          throw new gutil.PluginError('webpack', err);
+        }
+        gutil.log(stats.toString(webpackDevServerConfig.stats));
+      })
     }
   };
 };

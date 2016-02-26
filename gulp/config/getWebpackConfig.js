@@ -69,14 +69,6 @@ module.exports = function (userConfig) {
     },
     plugins: webpackPlugins
   }, userWebpackConfig, {
-    entry: {
-      main: path.join(pathsConfig.paths.src, pathsConfig.filePatterns.mainScript)
-    },
-    output: {
-      path: pathsConfig.paths.tmp,
-      filename: pathsConfig.dirNames.src + '/[name].js',
-      chunkFilename: pathsConfig.dirNames.src + "/[name].js"
-    },
     resolve: {
       extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
       alias: {

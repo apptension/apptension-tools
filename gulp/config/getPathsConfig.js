@@ -32,6 +32,7 @@ module.exports = function (userConfig) {
     revManifest: 'rev-manifest.json',
     vendorStyles: 'vendor-styles.css',
     mainScript: 'main.js',
+    serverScript: 'server.js',
     public: '**/*',
     production: [
       '.*.production',

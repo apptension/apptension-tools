@@ -20,6 +20,7 @@ module.exports = function (_config) {
     sass: require('./sass'),
     spritesmith: require('./spritesmith'),
     webpack: require('./webpack'),
+    serverWebpack: require('./serverWebpack'),
     copyProduction: require('./copyProduction'),
     zip: require('./zip')
   };
