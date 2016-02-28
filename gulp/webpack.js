@@ -41,8 +41,8 @@ module.exports = function (watch) {
       }
     });
 
-    var defaultScriptConfig = env.isProduction() ? 'production' : 'development';
-    var environment = gutil.env.env || defaultScriptConfig;
+    var defaultRuntimeEnv = env.isProduction() ? 'production' : 'development';
+    var runtimeEnv = gutil.env.env || defaultRuntimeEnv;
 
     if (env.isProduction()) {
       webpackConfig.devtool = false;
@@ -74,10 +74,11 @@ module.exports = function (watch) {
     webpackConfig.plugins.push(new HtmlWebpackPlugin({
       template: path.join(pathsConfig.paths.app, 'index.ejs'),
       inject: 'body',
-      environemnt: environment
+      environemnt: runtimeEnv,
+      debug: !env.isProduction()
     }));
 
-    _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, environment + '.js'));
+    _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, runtimeEnv + '.js'));
 
     var compiler = webpack(webpackConfig, function (err) {
       if (err) {
