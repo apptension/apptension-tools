@@ -4,6 +4,8 @@ var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var SpritesmithPlugin = require('webpack-spritesmith');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var config = require('./config');
 var env = require('./utils/env');
@@ -22,7 +24,7 @@ module.exports = function (watch) {
     if (!env.isProduction()) {
       entry.unshift(
         'webpack-dev-server/client?http://' + serverConfig.domain + ':' + serverConfig.port + '/',
-        "webpack/hot/dev-server"
+        'webpack/hot/dev-server'
       );
     }
 
@@ -39,36 +41,45 @@ module.exports = function (watch) {
       }
     });
 
-    var jsConfig, debug = true, environment;
+    var defaultScriptConfig = env.isProduction() ? 'production' : 'development';
+    var environment = gutil.env.env || defaultScriptConfig;
+
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
-      debug = false;
     }
 
-    if (gutil.env.env) {
-      jsConfig = path.join(pathsConfig.paths.environment, gutil.env.env);
-      environment = gutil.env.env;
-    } else {
-      if (env.isProduction()) {
-        jsConfig = path.join(pathsConfig.paths.environment, pathsConfig.environmentScripts.production);
-        environment = 'production';
-      } else {
-        jsConfig = path.join(pathsConfig.paths.environment, pathsConfig.environmentScripts.development);
-        environment = 'development';
+    webpackConfig.plugins.push(new webpack.DefinePlugin({
+      __DEBUG__: !env.isProduction(),
+      __CLIENT__: true,
+      __SERVER__: false
+    }));
+    webpackConfig.plugins.push(new CopyWebpackPlugin([
+      {from: path.join(pathsConfig.paths.app, pathsConfig.dirNames.public), to: pathsConfig.dirNames.public}
+    ]));
+    webpackConfig.plugins.push(new SpritesmithPlugin({
+      retina: '-2x',
+      src: {
+        cwd: pathsConfig.paths.sprites,
+        glob: '*.png'
+      },
+      target: {
+        image: path.join(pathsConfig.paths.app, pathsConfig.dirNames.images, 'generated', 'sprite.png'),
+        css: path.join(pathsConfig.paths.src, '_sprites.scss')
+      },
+      apiOptions: {
+        cssImageRef: '../' + pathsConfig.dirNames.images + '/generated/sprite.png'
       }
-    }
-
-    webpackConfig.plugins.push(new webpack.DefinePlugin({__DEBUG__: debug, __CLIENT__: true, __SERVER__: false}));
+    }));
     webpackConfig.plugins.push(new HtmlWebpackPlugin({
       template: path.join(pathsConfig.paths.app, 'index.ejs'),
       inject: 'body',
       environemnt: environment
     }));
 
-    _.set(webpackConfig, 'resolve.alias.env-config', jsConfig);
+    _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, environment + '.js'));
 
-    var compiler = webpack(webpackConfig, function (err, stats) {
+    var compiler = webpack(webpackConfig, function (err) {
       if (err) {
         throw new gutil.PluginError('webpack', err);
       }
