@@ -6,22 +6,15 @@ module.exports = function (_config) {
 
   return {
     browserSync: require('./browserSync'),
-    clean: require('./clean'),
     config: config,
-    compileIndex: require('./compileIndex'),
     copyBackend: require('./copyBackend'),
-    copyPublicAssets: require('./copyPublicAssets'),
+    copyProduction: require('./copyProduction'),
+    clean: require('./clean'),
     env: require('./utils/env'),
     eslint: require('./eslint'),
-    images: require('./images'),
     karma: require('./karma'),
-    rev: require('./rev'),
-    revReplace: require('./revReplace'),
-    sass: require('./sass'),
-    spritesmith: require('./spritesmith'),
-    webpack: require('./webpack'),
     serverWebpack: require('./serverWebpack'),
-    copyProduction: require('./copyProduction'),
+    webpack: require('./webpack'),
     zip: require('./zip')
   };
 };

@@ -1,13 +1,16 @@
 var _ = require('lodash');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var SpritesmithPlugin = require('webpack-spritesmith');
+var autoprefixer = require('autoprefixer');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var getPathsConfig = require('./getPathsConfig');
 
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
 
-  var fontNamePath = pathsConfig.dirNames.public + '/' + pathsConfig.dirNames.fonts;
+  var fontNamePath = '/assets/fonts/';
   var webpackLoaders = [
     {
       test: /\.jsx?$/,
@@ -24,16 +27,20 @@ module.exports = function (userConfig) {
       loader: 'html'
     },
     {
-      test: /\.hbs$/,
-      loader: 'handlebars'
-    },
-    {
       test: /\.json$/,
       loader: 'json'
     },
     {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'postcss', 'sass']
+    },
+    {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+      loaders: ['style', 'css', 'postcss']
+    },
+    {
+      test: /\.(png|jpg|gif|ico)/,
+      loader: 'url?limit=10000&name=/assets/images/[name]-[hash].png'
     },
     {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -58,7 +65,24 @@ module.exports = function (userConfig) {
   ].concat(_.get(userConfig, 'webpack.module.loaders', []));
 
   var webpackPlugins = [
-    new ExtractTextPlugin(pathsConfig.filePatterns.vendorStyles)
+    new webpack.HotModuleReplacementPlugin(),
+    new SpritesmithPlugin({
+      retina: '-2x',
+      src: {
+        cwd: pathsConfig.paths.sprites,
+        glob: '*.png'
+      },
+      target: {
+        image: path.join(pathsConfig.paths.app, 'images', 'generated', 'sprite.png'),
+        css: path.join(pathsConfig.paths.src, '_sprites.scss')
+      },
+      apiOptions: {
+        cssImageRef: "../images/generated/sprite.png"
+      }
+    }),
+    new CopyWebpackPlugin([
+      {from: path.join(pathsConfig.paths.app, pathsConfig.dirNames.public), to: pathsConfig.dirNames.public}
+    ])
   ].concat(_.get(userConfig, 'webpack.plugins', []));
 
   var userWebpackConfig = _.get(userConfig, 'webpack', {});
@@ -67,7 +91,16 @@ module.exports = function (userConfig) {
     module: {
       loaders: webpackLoaders
     },
-    plugins: webpackPlugins
+    sassLoader: {
+      includePaths: [pathsConfig.paths.tmp]
+    },
+    postcss: function () {
+      return [autoprefixer];
+    },
+    plugins: webpackPlugins,
+    node: {
+      fs: 'empty'
+    }
   }, userWebpackConfig, {
     resolve: {
       extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
