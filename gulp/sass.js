@@ -27,7 +27,9 @@ module.exports = function () {
     .pipe(autoprefixer());
 
   if (env.isProduction()) {
-    stream = stream.pipe(cssnano());
+    stream = stream.pipe(cssnano({
+      zindex: false
+    }));
   }
 
   stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
