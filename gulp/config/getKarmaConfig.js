@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var path = require('path');
-
+var webpack = require('webpack');
 var getPathsConfig = require('./getPathsConfig');
 var getWebpackConfig = require('./getWebpackConfig');
 
