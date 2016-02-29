@@ -26,12 +26,6 @@ module.exports = function () {
     .pipe(sassCompiler)
     .pipe(autoprefixer());
 
-  if (env.isProduction()) {
-    stream = stream.pipe(cssnano({
-      zindex: false
-    }));
-  }
-
   stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 
   if (env.isDevelopment()) {
