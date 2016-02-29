@@ -74,6 +74,13 @@ module.exports = function (userConfig) {
       alias: {
         vendor_modules: pathsConfig.paths.vendorModules
       }
+    },
+    node: {
+      __dirname: true,
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: "empty"
     }
   });
 };

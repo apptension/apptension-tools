@@ -30,12 +30,6 @@ module.exports = function (watch) {
         filename: pathsConfig.dirNames.src + '/[name].js',
         chunkFilename: pathsConfig.dirNames.src + "/[name].js"
       },
-      node: {
-        __dirname: true,
-        fs: "empty",
-        net: "empty",
-        tls: "empty"
-      },
       module: {
         noParse: /node_modules\/json-schema\/lib\/validate\.js/
       }
