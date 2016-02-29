@@ -20,7 +20,7 @@ module.exports = function (watch) {
       watch: false
     }, webpackConfig, {
       entry: {
-        main: path.join(pathsConfig.paths.src, pathsConfig.filePatterns.mainScript)
+        main: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.mainScript)
       },
       output: {
         path: pathsConfig.paths.tmp,

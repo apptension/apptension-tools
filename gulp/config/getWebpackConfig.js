@@ -81,6 +81,13 @@ module.exports = function (userConfig) {
       net: "empty",
       tls: "empty",
       dns: "empty"
+    },
+    browser: {
+      __dirname: true,
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: "empty"
     }
   });
 };
