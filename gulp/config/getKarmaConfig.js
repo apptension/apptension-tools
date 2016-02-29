@@ -23,6 +23,8 @@ module.exports = function (userConfig) {
     }
   ]).concat(_.get(userConfig, 'karma.webpack.module.loaders', []));
 
+  webpackConfig.plugins.push(new webpack.DefinePlugin({__DEBUG__: false, __CLIENT__: true, __SERVER__: false}));
+
   return _.defaultsDeep({
     webpack: {
       module: {
