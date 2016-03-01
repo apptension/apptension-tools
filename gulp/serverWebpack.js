@@ -18,7 +18,7 @@ module.exports = function (watch) {
     webpackConfig = _.defaultsDeep({
       cache:   false,
       context: __dirname,
-      devtool: 'eval',
+      devtool: 'eval', 
       watch: false,
       target:  'node'
     }, webpackConfig, {
