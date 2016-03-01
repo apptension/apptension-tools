@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var path = require('path');
 var autoprefixer = require('gulp-autoprefixer');
-var cssnano = require('gulp-cssnano');
 var _ = require('lodash');
 
 var browserSync = require('./utils/browserSyncInstance');

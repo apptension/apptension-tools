@@ -15,7 +15,7 @@ module.exports = function (watch) {
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
 
   return function (callback) {
-    webpackConfig = _.defaults({
+    webpackConfig = _.defaultsDeep({
       devtool: 'eval',
       watch: false
     }, webpackConfig, {
