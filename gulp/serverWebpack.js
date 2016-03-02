@@ -18,23 +18,17 @@ module.exports = function (watch) {
     webpackConfig = _.defaultsDeep({
       cache:   false,
       context: __dirname,
-      devtool: 'eval',
+      devtool: 'eval', 
       watch: false,
       target:  'node'
     }, webpackConfig, {
       entry: {
-        server: path.join(pathsConfig.paths.src, pathsConfig.filePatterns.serverScript)
+        server: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.serverScript)
       },
       output: {
         path: pathsConfig.paths.dist,
-        filename: pathsConfig.dirNames.src + '/[name].js',
-        chunkFilename: pathsConfig.dirNames.src + "/[name].js"
-      },
-      node: {
-        __dirname: true,
-        fs: "empty",
-        net: "empty",
-        tls: "empty"
+        filename: '/[name].js',
+        chunkFilename: "/[name].js"
       },
       module: {
         noParse: /node_modules\/json-schema\/lib\/validate\.js/

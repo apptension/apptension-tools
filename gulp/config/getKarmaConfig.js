@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var path = require('path');
-
+var webpack = require('webpack');
 var getPathsConfig = require('./getPathsConfig');
 var getWebpackConfig = require('./getWebpackConfig');
 
@@ -22,6 +22,8 @@ module.exports = function (userConfig) {
       loader: 'isparta'
     }
   ]).concat(_.get(userConfig, 'karma.webpack.module.loaders', []));
+
+  webpackConfig.plugins.push(new webpack.DefinePlugin({__DEBUG__: false, __CLIENT__: true, __SERVER__: false}));
 
   return _.defaultsDeep({
     webpack: {
