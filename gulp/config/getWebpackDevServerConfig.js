@@ -27,6 +27,7 @@ module.exports = function (userConfig) {
     proxy: {
       '/api/*': 'http://localhost:8080'
     },
-    stats: statsOptions
+    stats: statsOptions,
+    hot: true
   });
 };

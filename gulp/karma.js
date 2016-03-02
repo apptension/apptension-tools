@@ -15,8 +15,7 @@ module.exports = function (watch) {
       singleRun: !watch
     }, karmaConfig);
 
-    _.set(options, 'webpack.resolve.alias.env-config',
-      path.join(pathsConfig.paths.environment, pathsConfig.environmentScripts.test));
+    _.set(options, 'webpack.resolve.alias.env-config', path.join(pathsConfig.paths.environment, 'test.js'));
 
     var server = new karma.Server(options, function (exitCode) {
       if (exitCode) {
