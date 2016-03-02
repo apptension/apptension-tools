@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var fs = require('fs');
 var webpack = require('webpack');
 var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
@@ -19,7 +20,8 @@ module.exports = function (watch) {
 
   return function (callback) {
     var filename = env.isProduction() ? '/assets/scripts/[name]-[hash].js' : '[name].js';
-    var entry = [path.join(pathsConfig.paths.src, pathsConfig.filePatterns.mainScript)];
+    var entry = [path.join(pathsConfig.paths.app, pathsConfig.filePatterns.mainScript)];
+    var indexTemplatePath = path.join(pathsConfig.paths.app, 'index.ejs');
 
     if (!env.isProduction()) {
       entry.unshift(
@@ -33,7 +35,7 @@ module.exports = function (watch) {
       watch: false
     }, webpackConfig, {
       entry: {
-        main: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.mainScript)
+        main: entry
       },
       output: {
         path: pathsConfig.paths.dist,
@@ -71,12 +73,18 @@ module.exports = function (watch) {
         cssImageRef: '../' + pathsConfig.dirNames.images + '/generated/sprite.png'
       }
     }));
-    webpackConfig.plugins.push(new HtmlWebpackPlugin({
-      template: path.join(pathsConfig.paths.app, 'index.ejs'),
-      inject: 'body',
-      environemnt: runtimeEnv,
-      debug: !env.isProduction()
-    }));
+
+
+    try {
+      fs.accessSync(indexTemplatePath, fs.F_OK);
+      webpackConfig.plugins.push(new HtmlWebpackPlugin({
+        template: indexTemplatePath,
+        inject: 'body',
+        environemnt: runtimeEnv,
+        debug: !env.isProduction()
+      }));
+    } catch (e) {
+    }
 
     _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, runtimeEnv + '.js'));
 
