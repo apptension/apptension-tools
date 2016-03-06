@@ -65,6 +65,7 @@
     "karma-spec-reporter": "0.0.23",
     "karma-webpack": "^1.7.0",
     "lodash": "^4.2.1 ",
+    "manifest-revision-webpack-plugin": "^0.1.0",
     "merge-stream": "^1.0.0",
     "node-sass": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.3",
