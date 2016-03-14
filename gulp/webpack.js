@@ -67,11 +67,11 @@ module.exports = function (watch) {
         glob: '*.png'
       },
       target: {
-        image: path.join(pathsConfig.paths.app, pathsConfig.dirNames.images, 'generated', 'sprite.png'),
-        css: path.join(pathsConfig.paths.src, '_sprites.scss')
+        image: path.join(pathsConfig.paths.app, 'images', 'generated', 'sprite.png'),
+        css: path.join(pathsConfig.paths.app, '_sprites.scss')
       },
       apiOptions: {
-        cssImageRef: '../' + pathsConfig.dirNames.images + '/generated/sprite.png'
+        cssImageRef: '~images/generated/sprite.png'
       }
     }));
     webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
@@ -90,12 +90,18 @@ module.exports = function (watch) {
     }
 
     _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, runtimeEnv + '.js'));
+    _.set(webpackConfig, 'resolve.modulesDirectories', [
+      'node_modules',
+      'web_modules',
+      'app'
+    ]);
 
-    var compiler = webpack(webpackConfig, function (err) {
+    var compiler = webpack(webpackConfig, function (err, stats) {
       if (err) {
         throw new gutil.PluginError('webpack', err);
       }
-      callback();
+      gutil.log(stats.toString(webpackDevServerConfig.stats));
+      callback(err);
     });
 
     if (watch) {
