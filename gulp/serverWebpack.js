@@ -54,6 +54,11 @@ module.exports = function (watch) {
     }
 
     _.set(webpackConfig, 'resolve.alias.env-config', jsConfig);
+    _.set(webpackConfig, 'resolve.modulesDirectories', [
+      'node_modules',
+      'web_modules',
+      'app'
+    ]);
 
     var compiler = webpack(webpackConfig, function (err, stats) {
       if (err) {
