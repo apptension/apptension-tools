@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var webpack = require('webpack');
 var gutil = require('gulp-util');
-var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 
 var config = require('./config');
@@ -10,7 +9,6 @@ var env = require('./utils/env');
 
 module.exports = function (watch) {
   var pathsConfig = config.getPathsConfig();
-  var serverConfig = config.getServerConfig();
   var webpackConfig = config.getWebpackConfig();
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
 

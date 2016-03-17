@@ -20,7 +20,7 @@ module.exports = function (watch) {
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
 
   return function (callback) {
-    var filename = env.isProduction() ? '/assets/scripts/[name]-[hash].js' : '[name].js';
+    var filename = env.isProduction() ? '[name]-[hash].js' : '[name].js';
     var entry = [path.join(pathsConfig.paths.app, pathsConfig.filePatterns.mainScript)];
     var indexTemplatePath = path.join(pathsConfig.paths.app, 'index.ejs');
 
@@ -50,6 +50,9 @@ module.exports = function (watch) {
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
+      webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
+        rootAssetPath: pathsConfig.paths.app
+      }));
     }
 
     webpackConfig.plugins.push(new webpack.DefinePlugin({
@@ -73,9 +76,6 @@ module.exports = function (watch) {
       apiOptions: {
         cssImageRef: '~images/generated/sprite.png'
       }
-    }));
-    webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
-      rootAssetPath: pathsConfig.paths.app
     }));
 
     try {

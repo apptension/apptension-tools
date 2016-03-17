@@ -37,27 +37,11 @@ module.exports = function (userConfig) {
     },
     {
       test: /\.(png|jpg|gif|ico)/,
-      loader: 'url?limit=10000&name=/assets/images/[name]-[hash].png'
+      loader: 'file?name=[name]-[hash].[ext]'
     },
     {
-      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "url?limit=10000&mimetype=application/font-woff&name=/assets/fonts/[hash].woff"
-    },
-    {
-      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "url?limit=10000&mimetype=application/font-woff&name=/assets/fonts/[hash].woff2"
-    },
-    {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "url?limit=10000&mimetype=application/octet-stream&name=/assets/fonts/[hash].ttf"
-    },
-    {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "file?name=/assets/fonts/[hash].eot"
-    },
-    {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "url?limit=10000&mimetype=image/svg+xml&name=/assets/fonts/[hash].svg"
+      test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "file?name=[name]-[hash].[ext]"
     }
   ].concat(_.get(userConfig, 'webpack.module.loaders', []));
 

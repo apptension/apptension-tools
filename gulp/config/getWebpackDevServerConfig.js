@@ -16,7 +16,7 @@ var statsOptions = {
   cachedAssets: false,
   reasons: false,
   source: false,
-  errorDetails: false
+  errorDetails: true
 };
 
 module.exports = function (userConfig) {
