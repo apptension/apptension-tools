@@ -18,6 +18,10 @@ module.exports.setUserConfig = function (_config) {
   _userConfig = _config;
 };
 
+module.exports.getUserConfig = function () {
+  return _.cloneDeep(_userConfig);
+};
+
 module.exports.getPathsConfig = function () {
   return getPathsConfig(_userConfig);
 };

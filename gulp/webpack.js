@@ -18,6 +18,7 @@ module.exports = function (watch) {
   var serverConfig = config.getServerConfig();
   var webpackConfig = config.getWebpackConfig();
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
+  var userConfig = config.getUserConfig();
 
   return function (callback) {
     var filename = env.isProduction() ? '[name]-[hash].js' : '[name].js';
@@ -50,9 +51,12 @@ module.exports = function (watch) {
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
-      webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
-        rootAssetPath: pathsConfig.paths.app
-      }));
+      
+      if (userConfig.generateRevManifest) {
+        webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
+          rootAssetPath: pathsConfig.paths.app
+        }));
+      }
     }
 
     webpackConfig.plugins.push(new webpack.DefinePlugin({
