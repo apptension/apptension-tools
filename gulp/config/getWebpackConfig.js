@@ -20,10 +20,6 @@ module.exports = function (userConfig) {
       loader: 'ts-loader'
     },
     {
-      test: /\.html$/,
-      loader: 'html'
-    },
-    {
       test: /\.json$/,
       loader: 'json'
     },
