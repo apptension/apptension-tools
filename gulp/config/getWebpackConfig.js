@@ -33,11 +33,11 @@ module.exports = function (userConfig) {
     },
     {
       test: /\.(png|jpg|gif|ico)/,
-      loader: 'file?name=[name]-[hash].[ext]'
+      loader: 'file?name=/[name]-[hash].[ext]'
     },
     {
       test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: "file?name=[name]-[hash].[ext]"
+      loader: "file?name=/[name]-[hash].[ext]"
     }
   ].concat(_.get(userConfig, 'webpack.module.loaders', []));
 
