@@ -41,7 +41,8 @@ module.exports = function (watch) {
       },
       output: {
         path: pathsConfig.paths.dist,
-        filename: filename
+        filename: filename,
+        publicPath: '/'
       }
     });
 
