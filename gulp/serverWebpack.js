@@ -25,8 +25,9 @@ module.exports = function (watch) {
       },
       output: {
         path: pathsConfig.paths.dist,
-        filename: '/[name].js',
-        chunkFilename: "/[name].js"
+        filename: '[name].js',
+        chunkFilename: "[name].js",
+        publicPath: '/'
       },
       module: {
         noParse: /node_modules\/json-schema\/lib\/validate\.js/
