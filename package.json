@@ -1,6 +1,6 @@
 {
   "name": "apptension-tools",
-  "version": "5.0.13",
+  "version": "5.0.14",
   "description": "Common tools used in Apptension's projects",
   "repository": "https://github.com/apptension/apptension-tools.git",
   "main": "index.js",
