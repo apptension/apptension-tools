@@ -44,6 +44,7 @@ module.exports = function (userConfig) {
     webpack: {
       devtool: 'eval',
       resolve: {
+        extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
         alias: {
           vendor_modules: pathsConfig.paths.vendorModules
         }
