@@ -61,7 +61,7 @@ Object.defineProperty(module.exports, 'watchPaths', {
     return {
       index: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.indexWatch),
       sass: path.join(pathsConfig.paths.app, pathsConfig.filePatterns.styles),
-      eslint: path.join(pathsConfig.paths.eslint, pathsConfig.filePatterns.eslint),
+      eslint: [path.join(pathsConfig.paths.src, '**/*.js'), path.join(pathsConfig.paths.src, '**/*.jsx')],
       sprites: path.join(pathsConfig.paths.sprites, pathsConfig.filePatterns.sprites),
       images: path.join(pathsConfig.paths.images, pathsConfig.filePatterns.images),
       public: path.join(pathsConfig.paths.public, pathsConfig.filePatterns.public)
