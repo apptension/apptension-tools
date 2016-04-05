@@ -52,7 +52,7 @@ module.exports = function (watch) {
     if (env.isProduction()) {
       webpackConfig.devtool = false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
-      
+
       if (userConfig.generateRevManifest) {
         webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
           rootAssetPath: pathsConfig.paths.app
@@ -76,7 +76,7 @@ module.exports = function (watch) {
       },
       target: {
         image: path.join(pathsConfig.paths.app, 'images', 'generated', 'sprite.png'),
-        css: path.join(pathsConfig.paths.app, '_sprites.scss')
+        css: path.join(pathsConfig.paths.src, 'generated', '_sprites.scss')
       },
       apiOptions: {
         cssImageRef: '~images/generated/sprite.png'
