@@ -12,7 +12,8 @@ module.exports = function () {
       server: {
         baseDir: pathsConfig.paths.dist,
         port: 8081
-      }
+      },
+      port: 8081
     });
   } else {
     browserSync.init({
