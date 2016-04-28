@@ -78,6 +78,16 @@ By default it takes `app/src/main.js` as an entry point and produces bundle out 
 It also can spawn webpack dev server when `watch` argument passed to factory function
 is `true`.
 
+## Sass
+
+Sass loader is included, you can import scss files in any javascript as you would normally do
+in webpack.
+
+## Postcss
+
+Every css/scss file is going to be run through [postcss](https://github.com/postcss/postcss).
+Currently only autoprefixer is configured.
+
 ### Spritesmith
 
 Generates sprites, using [webpack-spritesmith](https://github.com/mixtur/webpack-spritesmith), from images located in `app/images/sprites` directory.
