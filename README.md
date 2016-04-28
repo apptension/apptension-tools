@@ -10,10 +10,16 @@ What is `apptension-tools`?
 * contains predefined gulp tasks,
 * contains predefined webpack configuration,
 * uses eslint to lint your code,
-* allows you to write in ES6 out of the box,
+* allows you to write in ES6 ans TypeScript out of the box,
 * reduces time necessary to bootstrap your project,
 * includes multi-environment support.
 
+## Example
+
+Wanna see an example of usage of apptension-tools?
+
+We created an [yeoman generator](https://github.com/apptension/generator-apptension-angular) for projects written in AngularJS.
+But know that any framework that would work in webpack is compatible with apptension-tools.
 
 ## Predefined Gulp tasks
 
@@ -37,19 +43,6 @@ It serves files from `dist` directory. Useful to check your build.
 
 Deletes `.tmp` and `dist` directories together with their content.
 
-### CompileIndex
-
-Compiles handlebars template to produce html file.
-It supports multiple entry points.
-
-###### Development
-
-Injects webpack dev server script.
-
-###### Production
-
-Removes development scripts.
-
 ### CopyBackend
 
 ###### Development
@@ -71,77 +64,26 @@ Not applicable.
 Copies all files that contain `*.production.*` in their name
 from current working directory to `dist`. It removes the `production` part.
 
-### CopyPublicAssets
-
-Copies `app/public` directory to output dir.
-
-###### Development
-
-Output directory is `.tmp`.
-
-###### Production
-
-Output directory is `dist`.
-
-
 ### Eslint
 
 It lints all script files in project based on `.eslintrc` file.
-
-### Images
-
-Copies files from `images` directory to output dir.
-
-###### Development
-
-Output directory is `.tmp`.
-
-###### Production
-
-Output directory is `dist`. Also applies imagemin.
 
 ### Karma
 
 Launches karma server in `test` environment.
 
-### Rev
+### Webpack
 
-###### Development
-
-Not applicable.
-
-###### Production
-
-Appends random hash to styles and scripts filenames in order to
-bust browser's cache on subsequent deploys. It generates rev manifest file
-that is later used by CompileIndex task. Outputs files to `dist` directory.
-
-### Rev-replace
-
-###### Development
-
-Not applicable.
-
-###### Production
-
-Replaces all paths to assets in `.html`, `.js` and `.css` files with those produced by `rev` task.
-
-### Sass
-
-Compiles sass files into css using [node-sass](https://github.com/sass/node-sass).
-It is not a part of the webpack build process in order to support sprites generation.
-Files are written to `.tmp` directory.
-
-###### Production
-
-Additionally css is minified.
+By default it takes `app/src/main.js` as an entry point and produces bundle out of it.
+It also can spawn webpack dev server when `watch` argument passed to factory function
+is `true`.
 
 ### Spritesmith
 
-Generates sprites from images located in `app/images/sprites` directory. It expects
-that retina images are present and are suffixed with `-2x.png`.
-It also generates sass file that contains variabled and mixins necessary to use
-images included in the sprite.
+Generates sprites, using [webpack-spritesmith](https://github.com/mixtur/webpack-spritesmith), from images located in `app/images/sprites` directory.
+It expects that retina images are present and are suffixed with `-2x.png`.
+It also generates sass file that contains variables and mixins necessary to use
+images included in the sprite. It is located in `app/src/generated/_sprites.scss`.
 
 
 Example of usage:
@@ -158,11 +100,6 @@ In above example the task expects those two files to be present in sprites dir:
 
 where former is **exactly** twice as big. In case it is not, the task will fail.
 
-### Webpack
-
-By default it takes `app/src/main.js` as an entry point and produces bundle out of it.
-It also can spawn webpack dev server when `watch` argument passed to factory function
-is `true`.
 
 #### node_modules
 
@@ -183,20 +120,6 @@ Those can later be used with:
 ```js
 import vendorExample from 'vendor_modules/vendorExample';
 ```
-
-#### vendor-styles.css
-
-All css files required in javascript will be extracted to `vendor-styles.css` which
-you can add to your index file template. Remember to use `assetPath` helper.
-
-###### Development
-
-Additionally includes source maps. By default webpack's devtools are set to `eval`
-as it is the fastest option.
-
-###### Production
-
-Additionally uglifies the script.
 
 #### \_\_DEBUG\_\_
 
@@ -267,15 +190,6 @@ type: 'Object'
 
 `webpack-dev-server` configuration object. Check webpack's [documentation](https://webpack.github.io/docs/webpack-dev-server.html)' for complete option's list.
 
-#### sass
-type: 'Object'
-
-`node-sass` configuration object. Check [github page](https://github.com/sass/node-sass) for complete option's list.
-
 #### karma
 
 `gulp-karma` configuration object. Check  [github page](https://github.com/karma-runner/gulp-karma) for complete option's list.
-
-## Known issues
-
-* As of now due to a bug in autoprefixer sourcemaps for sass are not generated.
