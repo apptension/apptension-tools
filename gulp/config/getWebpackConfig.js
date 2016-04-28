@@ -2,11 +2,25 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var getPathsConfig = require('./getPathsConfig');
 
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
+
+  var extractVendorCSSPlugin, extractSASSPlugin;
+  var scssLoader = {test: /\.scss$/};
+  var vendorCssLoader = {test: /\.css$/};
+
+  if (userConfig.extractCSS) {
+    extractSASSPlugin = new ExtractTextPlugin('styles.css', {allChunks: true});
+    extractVendorCSSPlugin = new ExtractTextPlugin('vendor.css', {allChunks: true});
+    scssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader']);
+    vendorCssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader']);
+  } else {
+    scssLoader.loaders = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
+    vendorCssLoader.loaders = ['style-loader', 'css-loader', 'postcss-loader'];
+  }
 
   var webpackLoaders = [
     {
@@ -23,14 +37,8 @@ module.exports = function (userConfig) {
       test: /\.json$/,
       loader: 'json'
     },
-    {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'postcss', 'sass']
-    },
-    {
-      test: /\.css$/,
-      loaders: ['style', 'css', 'postcss']
-    },
+    scssLoader,
+    vendorCssLoader,
     {
       test: /\.(png|jpg|gif|ico)/,
       loader: 'file?name=[name]-[hash].[ext]'
@@ -45,6 +53,14 @@ module.exports = function (userConfig) {
     new webpack.HotModuleReplacementPlugin()
   ].concat(_.get(userConfig, 'webpack.plugins', []));
 
+  if (extractSASSPlugin) {
+    webpackPlugins.push(extractSASSPlugin);
+  }
+
+  if (extractVendorCSSPlugin) {
+    webpackPlugins.push(extractVendorCSSPlugin);
+  }
+
   var userWebpackConfig = _.get(userConfig, 'webpack', {});
 
   return _.defaultsDeep({
@@ -52,7 +68,7 @@ module.exports = function (userConfig) {
       loaders: webpackLoaders
     },
     postcss: function () {
-      return [autoprefixer];
+      return [autoprefixer()];
     },
     plugins: webpackPlugins,
     node: {
