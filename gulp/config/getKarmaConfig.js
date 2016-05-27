@@ -71,6 +71,17 @@ module.exports = function (userConfig) {
     },
     reporters: ['mocha', 'coverage'],
 
+    mochaReporter: {
+      colors: {
+        success: 'blue',
+        info: 'bgGreen',
+        warning: 'cyan',
+        error: 'bgRed'
+      },
+      output: 'autowatch',
+      showDiff: true
+    },
+
     coverageReporter: {
       type: 'html',
       dir: 'coverage/'
@@ -88,7 +99,6 @@ module.exports = function (userConfig) {
       require('karma-coverage'),
       require('karma-jasmine'),
       require('karma-sourcemap-loader'),
-      require('karma-spec-reporter'),
       require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
       require('karma-jasmine-matchers'),
