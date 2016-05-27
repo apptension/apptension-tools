@@ -55,7 +55,7 @@ module.exports = function (userConfig) {
         colors: true
       }
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['mocha', 'coverage'],
 
     coverageReporter: {
       type: 'html',
@@ -77,7 +77,8 @@ module.exports = function (userConfig) {
       require('karma-spec-reporter'),
       require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
-      require('karma-jasmine-matchers')
+      require('karma-jasmine-matchers'),
+      require('karma-mocha-reporter')
     ]
   });
 };
