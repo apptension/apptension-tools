@@ -1,9 +1,10 @@
 var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
+var gutil = require('gulp-util');
+
 var getPathsConfig = require('./getPathsConfig');
 var getWebpackConfig = require('./getWebpackConfig');
-
 
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
@@ -53,7 +54,19 @@ module.exports = function (userConfig) {
     webpackMiddleware: {
       noInfo: true,
       stats: {
-        colors: true
+        colors: gutil.colors.supportsColor,
+        hash: false,
+        timings: false,
+        chunks: false,
+        chunkModules: false,
+        modules: false,
+        children: true,
+        version: true,
+        cached: false,
+        cachedAssets: false,
+        reasons: false,
+        source: false,
+        errorDetails: true
       }
     },
     reporters: ['mocha', 'coverage'],
