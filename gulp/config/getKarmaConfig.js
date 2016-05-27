@@ -51,6 +51,7 @@ module.exports = function (userConfig) {
       }
     },
     webpackMiddleware: {
+      noInfo: true,
       stats: {
         colors: true
       }
