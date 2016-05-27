@@ -72,12 +72,6 @@ module.exports = function (userConfig) {
     reporters: ['mocha', 'coverage'],
 
     mochaReporter: {
-      colors: {
-        success: 'blue',
-        info: 'bgGreen',
-        warning: 'cyan',
-        error: 'bgRed'
-      },
       output: 'autowatch',
       showDiff: true
     },
@@ -98,6 +92,7 @@ module.exports = function (userConfig) {
       require('karma-webpack'),
       require('karma-coverage'),
       require('karma-jasmine'),
+      require('karma-mocha'),
       require('karma-sourcemap-loader'),
       require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
