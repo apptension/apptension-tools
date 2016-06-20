@@ -42,7 +42,7 @@ module.exports = function (watch) {
       output: {
         path: pathsConfig.paths.dist,
         filename: filename,
-        publicPath: '/'
+        publicPath: _.get(userConfig, 'webpack.output.publicPath', '/')
       }
     });
 
