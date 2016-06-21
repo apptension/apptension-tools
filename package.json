@@ -80,7 +80,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-spritesmith": "^0.2.0"
+    "webpack-spritesmith": "0.2.3"
   },
   "optionalDependencies": {
     "ts-loader": "^0.8.2",
