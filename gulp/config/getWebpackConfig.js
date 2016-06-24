@@ -46,6 +46,17 @@ module.exports = function (userConfig) {
     {
       test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
       loader: "file?name=[name]-[hash].[ext]"
+    },
+    {
+      test: /\.ejs$/i,
+      loader: 'underscore-template-loader',
+      query: {
+        parseDynamicRoutes: true,
+        attributes: [
+          'img:src',
+          'link:href'
+        ]
+      }
     }
   ].concat(_.get(userConfig, 'webpack.module.loaders', []));
 

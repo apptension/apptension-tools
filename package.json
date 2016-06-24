@@ -78,6 +78,7 @@
     "postcss-loader": "^0.9.1",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
+    "underscore-template-loader": "^0.7.3",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-spritesmith": "0.2.3"

@@ -94,7 +94,7 @@ module.exports = function (watch) {
       webpackConfig.plugins.push(new HtmlWebpackPlugin({
         template: indexTemplatePath,
         inject: 'body',
-        environemnt: runtimeEnv,
+        environment: runtimeEnv,
         debug: !env.isProduction()
       }));
     } catch (e) {
