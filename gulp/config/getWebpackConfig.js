@@ -79,7 +79,7 @@ module.exports = function (userConfig) {
       loaders: webpackLoaders
     },
     postcss: function () {
-      return [autoprefixer()];
+      return [autoprefixer({browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']})];
     },
     plugins: webpackPlugins,
     node: {
