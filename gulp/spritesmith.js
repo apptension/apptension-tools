@@ -4,6 +4,7 @@ var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
+var buffer = require('vinyl-buffer');
 
 var env = require('./utils/env');
 var config = require('./config');
@@ -29,6 +30,7 @@ module.exports = function () {
 
   // Pipe image stream through image optimizer and onto disk
   var imgStream = spriteData.img
+    .pipe(buffer())
     .pipe(imagemin({
       progressive: true,
       use: [pngquant()]
