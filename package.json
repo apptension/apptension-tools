@@ -70,7 +70,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "lodash": "^4.13.1",
-    "manifest-revision-webpack-plugin": "^0.3.0",
     "merge-stream": "^1.0.0",
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
@@ -81,6 +80,7 @@
     "underscore-template-loader": "^0.7.3",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
+    "webpack-manifest-plugin": "^1.0.1",
     "webpack-spritesmith": "0.2.5"
   },
   "optionalDependencies": {

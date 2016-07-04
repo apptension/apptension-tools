@@ -7,7 +7,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var SpritesmithPlugin = require('webpack-spritesmith');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 var config = require('./config');
 var env = require('./utils/env');
@@ -54,8 +54,8 @@ module.exports = function (watch) {
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
 
       if (userConfig.generateRevManifest) {
-        webpackConfig.plugins.push(new ManifestRevisionPlugin(path.join(pathsConfig.paths.dist, 'rev-manifest.json'), {
-          rootAssetPath: pathsConfig.paths.app
+        webpackConfig.plugins.push(new ManifestPlugin({
+          fileName: 'rev-manifest.json'
         }));
       }
 
