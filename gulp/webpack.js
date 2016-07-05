@@ -104,7 +104,7 @@ module.exports = function (watch) {
     _.set(webpackConfig, 'resolve.modulesDirectories', [
       'node_modules',
       'web_modules',
-      'app'
+      _.get(config.getUserConfig(), 'paths.app', 'app')
     ]);
 
     var compiler = webpack(webpackConfig, function (err, stats) {
