@@ -15,11 +15,11 @@ module.exports = function (userConfig) {
   if (userConfig.extractCSS) {
     extractSASSPlugin = new ExtractTextPlugin('styles.css', {allChunks: true});
     extractVendorCSSPlugin = new ExtractTextPlugin('vendor.css', {allChunks: true});
-    scssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader']);
-    vendorCssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader']);
+    scssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader?minimize&-autoprefixer', 'postcss-loader', 'sass-loader']);
+    vendorCssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader?minimize&-autoprefixer']);
   } else {
-    scssLoader.loaders = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
-    vendorCssLoader.loaders = ['style-loader', 'css-loader', 'postcss-loader'];
+    scssLoader.loaders = ['style-loader', 'css-loader?minimize&-autoprefixer', 'postcss-loader', 'sass-loader'];
+    vendorCssLoader.loaders = ['style-loader', 'css-loader?minimize&-autoprefixer', 'postcss-loader'];
   }
 
   var webpackLoaders = [
