@@ -74,10 +74,10 @@ module.exports = function (userConfig) {
   };
 
   var cwd = _.get(userConfig, 'paths.cwd', process.cwd());
-  var appPath = path.join(cwd, dirNames.app);
+  var appPath = path.join(cwd, _.get(userConfig, 'paths.app', dirNames.app));
   var backendPath = path.join(cwd, dirNames.backend);
   var tmpPath = path.join(cwd, dirNames.tmp);
-  var distPath = path.join(cwd, dirNames.dist);
+  var distPath = path.join(cwd, _.get(userConfig, 'paths.dist', dirNames.dist));
   var vendorModulesPath = path.join(cwd, dirNames.vendorModules);
   var spritesPath = path.join(appPath, dirNames.images, dirNames.sprites);
   var imagesPath = path.join(appPath, dirNames.images);
