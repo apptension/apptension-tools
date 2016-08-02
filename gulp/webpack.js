@@ -112,6 +112,11 @@ module.exports = function (watch) {
         throw new gutil.PluginError('webpack', err);
       }
       gutil.log(stats.toString(webpackDevServerConfig.stats));
+
+      if (stats.hasErrors()) {
+        process.exit(1);
+      }
+
       callback(err);
     });
 
