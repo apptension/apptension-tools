@@ -86,6 +86,9 @@ module.exports = function (watch) {
       },
       apiOptions: {
         cssImageRef: '~images/generated/sprite.png'
+      },
+      spritesmithOptions: {
+        algorithm: 'top-down'
       }
     }));
 
