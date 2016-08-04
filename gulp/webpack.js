@@ -88,6 +88,7 @@ module.exports = function (watch) {
         cssImageRef: '~images/generated/sprite.png'
       },
       spritesmithOptions: {
+        // default binary-tree algorithm has order issues
         algorithm: 'top-down'
       }
     }));
