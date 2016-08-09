@@ -89,7 +89,9 @@ module.exports = function (watch) {
       },
       spritesmithOptions: {
         // default binary-tree algorithm has order issues
-        algorithm: 'top-down'
+        algorithm: 'top-down',
+        // fix problem with icons overlapping each other using top-down algorithm
+        padding: 1
       }
     }));
 
