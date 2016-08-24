@@ -54,7 +54,12 @@ module.exports = function (userConfig) {
         colors: true
       }
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['mocha', 'coverage'],
+
+    mochaReporter: {
+      output: 'autowatch',
+      showDiff: true
+    },
 
     coverageReporter: {
       type: 'html',
@@ -72,11 +77,12 @@ module.exports = function (userConfig) {
       require('karma-webpack'),
       require('karma-coverage'),
       require('karma-jasmine'),
+      require('karma-mocha'),
       require('karma-sourcemap-loader'),
-      require('karma-spec-reporter'),
       require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
-      require('karma-jasmine-matchers')
+      require('karma-jasmine-matchers'),
+      require('karma-mocha-reporter')
     ]
   });
 };
