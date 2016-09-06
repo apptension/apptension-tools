@@ -13,6 +13,7 @@ var env = require('./utils/env');
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();
   var sassConfig = config.getSassConfig();
+  var cssnanoConfig = config.getCssnanoConfig();
 
   var options = _.extend({}, sassConfig, {
     sourceComments: env.isDevelopment()
@@ -25,7 +26,7 @@ module.exports = function () {
   })
     .pipe(sassCompiler)
     .pipe(autoprefixer())
-    .pipe(cssnano());
+    .pipe(cssnano(cssnanoConfig));
 
   stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 
