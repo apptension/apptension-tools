@@ -6,6 +6,7 @@ var getKarmaConfig = require('./getKarmaConfig');
 var getWebpackConfig = require('./getWebpackConfig');
 var getRevManifestConfig = require('./getRevManifestConfig');
 var getSassConfig = require('./getSassConfig');
+var getCssnanoConfig = require('./getCssnanoConfig');
 var getWebpackDevServerConfig = require('./getWebpackDevServerConfig');
 var getHandlebarsConfig = require('./getHandlebarsConfig');
 
@@ -23,27 +24,31 @@ module.exports.getPathsConfig = function () {
 };
 
 module.exports.getServerConfig = function () {
-  return getServerConfig(_userConfig)
+  return getServerConfig(_userConfig);
 };
 
 module.exports.getKarmaConfig = function () {
-  return getKarmaConfig(_userConfig)
+  return getKarmaConfig(_userConfig);
 };
 
 module.exports.getWebpackConfig = function () {
-  return getWebpackConfig(_userConfig)
+  return getWebpackConfig(_userConfig);
 };
 
 module.exports.getRevManifestConfig = function () {
-  return getRevManifestConfig(_userConfig)
+  return getRevManifestConfig(_userConfig);
 };
 
 module.exports.getSassConfig = function () {
-  return getSassConfig(_userConfig)
+  return getSassConfig(_userConfig);
+};
+
+module.exports.getCssnanoConfig = function () {
+  return getCssnanoConfig(_userConfig);
 };
 
 module.exports.getWebpackDevServerConfig = function () {
-  return getWebpackDevServerConfig(_userConfig)
+  return getWebpackDevServerConfig(_userConfig);
 };
 
 module.exports.getHandlebarsConfig = function () {
