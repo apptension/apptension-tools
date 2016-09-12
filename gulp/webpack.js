@@ -97,12 +97,12 @@ module.exports = function (watch) {
 
     try {
       fs.accessSync(indexTemplatePath, fs.F_OK);
-      webpackConfig.plugins.push(new HtmlWebpackPlugin({
+      webpackConfig.plugins.push(new HtmlWebpackPlugin(_.assign({
         template: indexTemplatePath,
         inject: 'body',
         environment: runtimeEnv,
         debug: !env.isProduction()
-      }));
+      }, _.get(userConfig, 'htmlExtraOptions', {}))));
     } catch (e) {
     }
 
