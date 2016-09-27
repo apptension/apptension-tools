@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "es2015",
+    "babel-preset-power-assert"
+  ],
+  "plugins": [
+    "babel-plugin-espower",
+    "transform-object-rest-spread"
+  ]
+}
