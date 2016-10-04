@@ -2,7 +2,7 @@ export {default as configure} from './configure';
 
 const applyMiddleware = configure({
   resolve: {
-    extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['', '.js'],
     alias: {
       vendor_modules: pathsConfig.paths.vendorModules
     }
