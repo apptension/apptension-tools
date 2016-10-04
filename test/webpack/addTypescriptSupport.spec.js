@@ -4,7 +4,7 @@ import {find, propEq, equals} from 'ramda';
 import addTypeScriptSupport from '../../webpack/addTypeScriptSupport';
 
 describe('addTypescriptSupport', () => {
-  it('should add babel loader', () => {
+  it('should add typescript loader', () => {
     const initialConfig = {module: {loaders: []}};
     const config = addTypeScriptSupport()(initialConfig);
 
