@@ -42,10 +42,6 @@ module.exports.getRevManifestConfig = function () {
   return getRevManifestConfig(_userConfig)
 };
 
-module.exports.getSassConfig = function () {
-  return getSassConfig(_userConfig)
-};
-
 module.exports.getWebpackDevServerConfig = function () {
   return getWebpackDevServerConfig(_userConfig)
 };
