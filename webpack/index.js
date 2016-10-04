@@ -1,14 +1,9 @@
-export {default as configure} from './configure';
+export {default as addVendorModulesAlias} from './addVendorModulesAlias';
+export {default as addBabelSupport} from './addBabelSupport';
 
-const applyMiddleware = configure({
-  resolve: {
-    extensions: ['', '.js'],
-    alias: {
-      vendor_modules: pathsConfig.paths.vendorModules
-    }
-  },
-});
+export createConfiguration from './createConfiguration';
 
-export default (env, middleware) => applyMiddleware([
-  ...middleware
-])(env);
+export const defaultEvolutions = [
+  addBabelSupport,
+  addVendorModulesAlias
+];

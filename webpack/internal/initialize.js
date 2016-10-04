@@ -9,6 +9,20 @@ export default (env) => (config) => {
     plugins: [],
     module: {
       loaders: []
+    },
+    node: {
+      __dirname: true,
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: "empty"
+    },
+    browser: {
+      __dirname: true,
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: "empty"
     }
   }, config);
 };

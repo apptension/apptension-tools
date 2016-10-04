@@ -24,11 +24,6 @@ module.exports = function (userConfig) {
 
   var webpackLoaders = [
     {
-      test: /\.jsx?$/,
-      exclude: /node_modules|bower_components|vendor_modules/,
-      loader: 'babel'
-    },
-    {
       test: /\.tsx?$/,
       exclude: /node_modules|bower_components|vendor_modules/,
       loader: 'ts-loader'
@@ -88,23 +83,6 @@ module.exports = function (userConfig) {
   }, userWebpackConfig, {
     resolve: {
       extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
-      alias: {
-        vendor_modules: pathsConfig.paths.vendorModules
-      }
-    },
-    node: {
-      __dirname: true,
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
-    },
-    browser: {
-      __dirname: true,
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
     }
   });
 };
