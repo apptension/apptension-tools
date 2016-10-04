@@ -24,11 +24,6 @@ module.exports = function (userConfig) {
 
   var webpackLoaders = [
     {
-      test: /\.tsx?$/,
-      exclude: /node_modules|bower_components|vendor_modules/,
-      loader: 'ts-loader'
-    },
-    {
       test: /\.json$/,
       loader: 'json'
     },
@@ -76,13 +71,7 @@ module.exports = function (userConfig) {
     postcss: function () {
       return [autoprefixer({browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']})];
     },
-    plugins: webpackPlugins,
-    node: {
-      fs: 'empty'
-    }
+    plugins: webpackPlugins
   }, userWebpackConfig, {
-    resolve: {
-      extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
-    }
   });
 };

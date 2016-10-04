@@ -12,17 +12,17 @@ export default (env) => (config) => {
     },
     node: {
       __dirname: true,
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      dns: 'empty'
     },
     browser: {
       __dirname: true,
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      dns: 'empty'
     }
   }, config);
 };
