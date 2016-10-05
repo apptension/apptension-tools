@@ -10,17 +10,19 @@ export {default as addInlineSassSupport} from './addInlineSassSupport';
 
 export {default as addInlineVendorStylesSupport} from './addInlineVendorStylesSupport';
 
+export {default as addJSONLoader} from './addJSONLoader';
+
 export {default as addVendorModulesAlias} from './addVendorModulesAlias';
 
 export {default as addTypescriptSupport} from './addTypescriptSupport';
 
-
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
+  addJSONLoader,
+  addCommonStaticFilesLoader,
   addInlineVendorStylesSupport,
   addInlineSassSupport,
-  addCommonStaticFilesLoader,
   addBabelSupport,
   addVendorModulesAlias
 ];
