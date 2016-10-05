@@ -1,9 +1,7 @@
-import {evolve, merge} from 'ramda';
+import {evolve, assoc} from 'ramda';
 
 export default ({paths}) => evolve({
   resolve: {
-    alias: merge({
-      vendor_modules: paths.vendorModules
-    })
+    alias: assoc('vendor_modules', paths.vendorModules)
   }
 });
