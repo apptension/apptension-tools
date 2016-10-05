@@ -8,27 +8,12 @@ var getPathsConfig = require('./getPathsConfig');
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
 
-  var extractVendorCSSPlugin, extractSASSPlugin;
-  var scssLoader = {test: /\.scss$/};
-  var vendorCssLoader = {test: /\.css$/};
-
-  if (userConfig.extractCSS) {
-    extractSASSPlugin = new ExtractTextPlugin('styles.css', {allChunks: true});
-    extractVendorCSSPlugin = new ExtractTextPlugin('vendor.css', {allChunks: true});
-    scssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader?minimize&-autoprefixer', 'postcss-loader', 'sass-loader']);
-    vendorCssLoader.loader = extractSASSPlugin.extract('style-loader', ['css-loader?minimize&-autoprefixer']);
-  } else {
-    scssLoader.loaders = ['style-loader', 'css-loader?minimize&-autoprefixer', 'postcss-loader', 'sass-loader'];
-    vendorCssLoader.loaders = ['style-loader', 'css-loader?minimize&-autoprefixer', 'postcss-loader'];
-  }
 
   var webpackLoaders = [
     {
       test: /\.json$/,
       loader: 'json'
     },
-    scssLoader,
-    vendorCssLoader,
     {
       test: /\.ejs$/i,
       loader: 'underscore-template-loader',
@@ -45,14 +30,6 @@ module.exports = function (userConfig) {
   var webpackPlugins = [
     new webpack.HotModuleReplacementPlugin()
   ].concat(_.get(userConfig, 'webpack.plugins', []));
-
-  if (extractSASSPlugin) {
-    webpackPlugins.push(extractSASSPlugin);
-  }
-
-  if (extractVendorCSSPlugin) {
-    webpackPlugins.push(extractVendorCSSPlugin);
-  }
 
   var userWebpackConfig = _.get(userConfig, 'webpack', {});
 

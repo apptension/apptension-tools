@@ -7,8 +7,10 @@ describe('addTypescriptSupport', () => {
   it('should add typescript loader', () => {
     const initialConfig = {module: {loaders: []}};
     const config = addTypeScriptSupport()(initialConfig);
+    const [loader] = config.module.loaders;
 
-    assert(find(propEq('loader', 'ts-loader'))(config.module.loaders));
+    assert.equal(loader.test.toString(), '/\\\.tsx?$/');
+    assert.equal(loader.loader, 'ts-loader');
   });
 
   it('should add ts extension', () => {

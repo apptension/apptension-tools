@@ -35,7 +35,6 @@
     "estraverse-fb": "^1.3.1",
     "mocha": "^2.5.3",
     "power-assert": "^1.4.1",
-    "ramda": "^0.22.1",
     "sinon": "^1.17.6"
   },
   "dependencies": {
@@ -81,10 +80,12 @@
     "node-sass": "^3.8.0",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-loader": "^0.9.1",
+    "ramda": "^0.22.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "underscore-template-loader": "^0.7.3",
     "webpack": "^1.13.1",
+    "webpack-combine-loaders": "^2.0.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-manifest-plugin": "^1.0.1",
     "webpack-spritesmith": "0.2.5"
