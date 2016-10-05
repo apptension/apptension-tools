@@ -6,6 +6,8 @@ export {default as addExtractedSassSupport} from './addExtractedSassSupport';
 
 export {default as addExtractedVendorStylesSupport} from './addExtractedVendorStylesSupport';
 
+export {default as addIndexTemplateLoader} from './addIndexTemplateLoader';
+
 export {default as addInlineSassSupport} from './addInlineSassSupport';
 
 export {default as addInlineVendorStylesSupport} from './addInlineVendorStylesSupport';
@@ -19,6 +21,7 @@ export {default as addTypescriptSupport} from './addTypescriptSupport';
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
+  addIndexTemplateLoader,
   addJSONLoader,
   addCommonStaticFilesLoader,
   addInlineVendorStylesSupport,

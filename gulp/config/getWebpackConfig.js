@@ -2,7 +2,6 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var getPathsConfig = require('./getPathsConfig');
 
 module.exports = function (userConfig) {
@@ -10,10 +9,6 @@ module.exports = function (userConfig) {
 
 
   var webpackLoaders = [
-    {
-      test: /\.json$/,
-      loader: 'json'
-    },
     {
       test: /\.ejs$/i,
       loader: 'underscore-template-loader',
