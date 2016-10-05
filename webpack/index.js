@@ -18,12 +18,15 @@ export {default as addVendorModulesAlias} from './addVendorModulesAlias';
 
 export {default as addTypescriptSupport} from './addTypescriptSupport';
 
+export {default as configPostcss} from './configPostcss';
+
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
   addIndexTemplateLoader,
   addJSONLoader,
   addCommonStaticFilesLoader,
+  configPostcss,
   addInlineVendorStylesSupport,
   addInlineSassSupport,
   addBabelSupport,
