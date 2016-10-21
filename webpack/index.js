@@ -24,6 +24,8 @@ export {default as addJSONLoader} from './addJSONLoader';
 
 export {default as addMainEntryPoint} from './addMainEntryPoint';
 
+export {default as addManifestPlugin} from './addManifestPlugin';
+
 export {default as addSpritesmithSprite} from './addSpritesmithSprite';
 
 export {default as addVendorModulesAlias} from './addVendorModulesAlias';

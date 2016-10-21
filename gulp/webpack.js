@@ -1,15 +1,11 @@
 var _ = require('lodash');
-var fs = require('fs');
 var webpack = require('webpack');
 var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ManifestPlugin = require('webpack-manifest-plugin');
 
 var config = require('./config');
-var env = require('./utils/env');
 
 
 module.exports = function (watch) {
@@ -17,21 +13,13 @@ module.exports = function (watch) {
   var serverConfig = config.getServerConfig();
   var webpackConfig = config.getWebpackConfig();
   var webpackDevServerConfig = config.getWebpackDevServerConfig();
-  var userConfig = config.getUserConfig();
 
   return function (callback) {
-    if (env.isProduction()) {
-      if (userConfig.generateRevManifest) {
-        webpackConfig.plugins.push(new ManifestPlugin({
-          fileName: 'rev-manifest.json'
-        }));
-      }
-    }
-
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false
     }));
+
     webpackConfig.plugins.push(new CopyWebpackPlugin([
       {from: path.join(pathsConfig.paths.app, pathsConfig.dirNames.public), to: pathsConfig.dirNames.public}
     ]));
