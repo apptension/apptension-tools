@@ -6,14 +6,14 @@ describe('defineAlias', () => {
   it('should define alias with specified name nad path', () => {
     const name = 'someAlias';
     const path = '/path/script.js';
-    const config = defineAlias({name, path})()({resolve: {alias: {}}});
+    const config = defineAlias(name, path)()({resolve: {alias: {}}});
 
     assert.equal(config.resolve.alias[name], path);
   });
 
   it('should keep other aliases', () => {
     const otherAlias = '/value.js';
-    const config = defineAlias({name: 'someAlias', path: 'path'})()({
+    const config = defineAlias('someAlias', 'path')()({
       resolve: {
         alias: {
           otherAlias: otherAlias
