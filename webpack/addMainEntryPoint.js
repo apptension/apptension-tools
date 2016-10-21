@@ -7,6 +7,7 @@ export default ({env, paths, filePatterns}) => {
   const entryName = 'main';
 
   const mainScriptPath = path.join(paths.app, filePatterns.mainScript);
+  const devServerConfig = env.devServer || {};
 
   const prodEvolution = evolve({
     entry: assoc(entryName, mainScriptPath)
@@ -14,7 +15,7 @@ export default ({env, paths, filePatterns}) => {
 
   const devEvolution = evolve({
     entry: assoc(entryName, [
-      'webpack-dev-server/client?http://' + env.domain + ':' + env.port + '/',
+      'webpack-dev-server/client?http://' + devServerConfig.domain + ':' + devServerConfig.port + '/',
       'webpack/hot/dev-server',
       mainScriptPath
     ])

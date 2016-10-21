@@ -19,7 +19,7 @@ describe('addMainEntryPoint', () => {
   });
 
   describe('development', () => {
-    const env = dev({domain: 'localhost', port: 8000});
+    const env = dev({devServer: {domain: 'localhost', port: 8000}});
 
     it('should add path to script as an entry point', () => {
       const config = addMainEntryPoint({
@@ -30,7 +30,7 @@ describe('addMainEntryPoint', () => {
 
       assert.deepStrictEqual(config.entry, {
         main: [
-          'webpack-dev-server/client?http://' + env.domain + ':' + env.port + '/',
+          'webpack-dev-server/client?http://' + env.devServer.domain + ':' + env.devServer.port + '/',
           'webpack/hot/dev-server',
           '/app/main.js'
         ]
@@ -39,7 +39,7 @@ describe('addMainEntryPoint', () => {
   });
 
   describe('developmentOptimized', () => {
-    const env = devOptimized();
+    const env = devOptimized({devServer: {domain: 'localhost', port: 8000}});
 
     it('should add path to script as an entry point', () => {
       const config = addMainEntryPoint({
@@ -50,7 +50,7 @@ describe('addMainEntryPoint', () => {
 
       assert.deepStrictEqual(config.entry, {
         main: [
-          'webpack-dev-server/client?http://' + env.domain + ':' + env.port + '/',
+          'webpack-dev-server/client?http://' + env.devServer.domain + ':' + env.devServer.port + '/',
           'webpack/hot/dev-server',
           '/app/main.js'
         ]
