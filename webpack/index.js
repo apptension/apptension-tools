@@ -8,6 +8,8 @@ export {default as addExtractedSassSupport} from './addExtractedSassSupport';
 
 export {default as addExtractedVendorStylesSupport} from './addExtractedVendorStylesSupport';
 
+export {default as addHTMLWebpackPlugin} from './addHTMLWebpackPlugin';
+
 export {default as addIndexTemplateLoader} from './addIndexTemplateLoader';
 
 export {default as addInlineSassSupport} from './addInlineSassSupport';
@@ -37,6 +39,7 @@ export {default as createConfiguration} from './createConfiguration';
 export {default as whenEnv} from './whenEnv';
 
 export const defaultEvolutions = [
+  addHTMLWebpackPlugin(),
   addSpritesmithSprite({name: 'default'}),
   defineGlobalEnvConstants,
   whenEnv(isProd, addUglifyJS),

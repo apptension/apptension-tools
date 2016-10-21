@@ -5,7 +5,6 @@ var gutil = require('gulp-util');
 var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var SpritesmithPlugin = require('webpack-spritesmith');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
 
@@ -48,26 +47,6 @@ module.exports = function (watch) {
     webpackConfig.plugins.push(new CopyWebpackPlugin([
       {from: path.join(pathsConfig.paths.app, pathsConfig.dirNames.public), to: pathsConfig.dirNames.public}
     ]));
-    webpackConfig.plugins.push(new SpritesmithPlugin({
-      retina: '-2x',
-      src: {
-        cwd: pathsConfig.paths.sprites,
-        glob: '*.png'
-      },
-      target: {
-        image: path.join(pathsConfig.paths.app, 'images', 'generated', 'sprite.png'),
-        css: path.join(pathsConfig.paths.src, 'generated', '_sprites.scss')
-      },
-      apiOptions: {
-        cssImageRef: '~images/generated/sprite.png'
-      },
-      spritesmithOptions: {
-        // default binary-tree algorithm has order issues
-        algorithm: 'top-down',
-        // fix problem with icons overlapping each other using top-down algorithm
-        padding: 1
-      }
-    }));
 
     try {
       fs.accessSync(indexTemplatePath, fs.F_OK);
