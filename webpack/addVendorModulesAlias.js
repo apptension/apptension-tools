@@ -1,7 +1,3 @@
-import {evolve, assoc} from 'ramda';
+import defineAlias from './defineAlias';
 
-export default ({paths}) => evolve({
-  resolve: {
-    alias: assoc('vendor_modules', paths.vendorModules)
-  }
-});
+export default ({paths}) => defineAlias('vendor_modules', paths.vendorModules)();

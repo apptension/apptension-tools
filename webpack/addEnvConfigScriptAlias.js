@@ -1,8 +1,5 @@
-import {evolve, assoc} from 'ramda';
 import path from 'path';
 
-export default ({paths, env}) => evolve({
-  resolve: {
-    alias: assoc('env-config', path.join(paths.environment, env.scriptEnv + '.js'))
-  }
-});
+import defineAlias from './defineAlias';
+
+export default ({paths, env}) => defineAlias('env-config', path.join(paths.environment, env.scriptEnv + '.js'))();
