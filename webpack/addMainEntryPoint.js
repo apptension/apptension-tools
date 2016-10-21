@@ -1,4 +1,4 @@
-import {evolve, assoc, identity, cond, equals, either, always} from 'ramda';
+import {evolve, assoc, cond, either, always} from 'ramda';
 import path from 'path';
 
 import {isDev, isProd, isDevOptimized} from '../env';
@@ -24,5 +24,5 @@ export default ({env, paths, filePatterns}) => {
   return cond([
     [isProd, always(prodEvolution)],
     [either(isDev, isDevOptimized), always(devEvolution)]
-  ])(env)
+  ])(env);
 };

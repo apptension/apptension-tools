@@ -1,10 +1,3 @@
-import {evolve, append} from 'ramda';
+import addLoader from './addLoader';
 
-export default () => evolve({
-  module: {
-    loaders: append({
-      test: /\.json$/,
-      loader: "json"
-    })
-  }
-});
+export default addLoader({test: /\.json$/, loader: 'json'});
