@@ -7,19 +7,8 @@ var getPathsConfig = require('./getPathsConfig');
 module.exports = function (userConfig) {
   var pathsConfig = getPathsConfig(userConfig);
 
-
   var webpackLoaders = [
-    {
-      test: /\.ejs$/i,
-      loader: 'underscore-template-loader',
-      query: {
-        parseDynamicRoutes: true,
-        attributes: [
-          'img:src',
-          'link:href'
-        ]
-      }
-    }
+
   ].concat(_.get(userConfig, 'webpack.module.loaders', []));
 
   var webpackPlugins = [
@@ -31,9 +20,6 @@ module.exports = function (userConfig) {
   return _.defaultsDeep({
     module: {
       loaders: webpackLoaders
-    },
-    postcss: function () {
-      return [autoprefixer({browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']})];
     },
     plugins: webpackPlugins
   }, userWebpackConfig, {

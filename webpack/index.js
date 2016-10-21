@@ -14,6 +14,8 @@ export {default as addInlineVendorStylesSupport} from './addInlineVendorStylesSu
 
 export {default as addJSONLoader} from './addJSONLoader';
 
+export {default as addMainEntryPoint} from './addMainEntryPoint';
+
 export {default as addVendorModulesAlias} from './addVendorModulesAlias';
 
 export {default as addTypescriptSupport} from './addTypescriptSupport';
@@ -23,6 +25,7 @@ export {default as configPostcss} from './configPostcss';
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
+  addMainEntryPoint,
   addIndexTemplateLoader,
   addJSONLoader,
   addCommonStaticFilesLoader,

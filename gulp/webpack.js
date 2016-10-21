@@ -22,23 +22,12 @@ module.exports = function (watch) {
 
   return function (callback) {
     var filename = env.isProduction() ? '[name]-[hash].js' : '[name].js';
-    var entry = [path.join(pathsConfig.paths.app, pathsConfig.filePatterns.mainScript)];
     var indexTemplatePath = path.join(pathsConfig.paths.app, 'index.ejs');
-
-    if (!env.isProduction()) {
-      entry.unshift(
-        'webpack-dev-server/client?http://' + serverConfig.domain + ':' + serverConfig.port + '/',
-        'webpack/hot/dev-server'
-      );
-    }
 
     webpackConfig = _.defaultsDeep({
       devtool: 'eval',
       watch: false
     }, webpackConfig, {
-      entry: {
-        main: entry
-      },
       output: {
         path: pathsConfig.paths.dist,
         filename: filename,
