@@ -40,6 +40,8 @@ export {default as configPostcss} from './configPostcss';
 
 export {default as copyDirectory} from './copyDirectory';
 
+export {default as defineAlias} from './defineAlias';
+
 export {default as defineGlobalEnvConstants} from './defineGlobalEnvConstants';
 
 export {default as createConfiguration} from './createConfiguration';
