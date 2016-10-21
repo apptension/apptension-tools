@@ -1,8 +1,10 @@
 import {merge} from 'ramda';
 
-export default (env) => merge({
+export default () => merge({
   entry: null,
   output: null,
+  watch: false,
+  devtool: false,
   resolve: {
     extensions: ['', '.js'],
     alias: {}

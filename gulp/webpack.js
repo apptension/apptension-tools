@@ -20,19 +20,7 @@ module.exports = function (watch) {
   var userConfig = config.getUserConfig();
 
   return function (callback) {
-    var indexTemplatePath = path.join(pathsConfig.paths.app, 'index.ejs');
-
-    webpackConfig = _.defaultsDeep({
-      devtool: 'eval',
-      watch: false
-    }, webpackConfig);
-
-    var defaultRuntimeEnv = env.isProduction() ? 'production' : 'development';
-    var runtimeEnv = gutil.env.env || defaultRuntimeEnv;
-
     if (env.isProduction()) {
-      webpackConfig.devtool = false;
-
       if (userConfig.generateRevManifest) {
         webpackConfig.plugins.push(new ManifestPlugin({
           fileName: 'rev-manifest.json'
