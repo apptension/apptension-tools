@@ -3,7 +3,7 @@ import SpritesmithPlugin from 'webpack-spritesmith';
 
 import addSpritesmithSprite from '../../webpack/addSpritesmithSprite';
 
-describe('addExtractedSassSupport', () => {
+describe('addSpritesmithSprite', () => {
   it('should add spritesmith plugin', () => {
     const initialConfig = {plugins: []};
     const config = addSpritesmithSprite({name: 'default'})({

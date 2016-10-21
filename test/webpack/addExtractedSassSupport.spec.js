@@ -1,5 +1,4 @@
 import assert from 'power-assert';
-import {find, propEq, equals} from 'ramda';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 import addExtractedSassSupport from '../../webpack/addExtractedSassSupport';

@@ -4,7 +4,7 @@ import {dev, devOptimized, production} from '../../env';
 import defineGlobalConstants from '../../webpack/defineGlobalEnvConstants';
 import {DefinePlugin} from 'webpack';
 
-describe('addMainEntryPoint', () => {
+describe('defineGlobalConstants', () => {
   describe('production', () => {
     const env = production();
 
@@ -15,7 +15,7 @@ describe('addMainEntryPoint', () => {
       assert(plugin instanceof DefinePlugin);
     });
 
-    it('should add path to script as an entry point', () => {
+    it('should add required definitions', () => {
       const config = defineGlobalConstants({env})({plugins: []});
       const [plugin] = config.plugins;
 
@@ -29,7 +29,7 @@ describe('addMainEntryPoint', () => {
   describe('development', () => {
     const env = devOptimized();
 
-    it('should add path to script as an entry point', () => {
+    it('should add required definitions', () => {
       const config = defineGlobalConstants({env})({plugins: []});
       const [plugin] = config.plugins;
 
@@ -43,7 +43,7 @@ describe('addMainEntryPoint', () => {
   describe('developmentOptimized', () => {
     const env = dev();
 
-    it('should add path to script as an entry point', () => {
+    it('should add required definitions', () => {
       const config = defineGlobalConstants({env})({plugins: []});
       const [plugin] = config.plugins;
 

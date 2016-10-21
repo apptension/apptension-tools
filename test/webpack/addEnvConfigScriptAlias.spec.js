@@ -3,7 +3,7 @@ import assert from 'power-assert';
 import addEnvConfigScriptAlias from '../../webpack/addEnvConfigScriptAlias';
 import {production} from '../../env';
 
-describe('addBabelSupport', () => {
+describe('addEnvConfigScriptAlias', () => {
   const env = production();
 
   it('should add env-config alias', () => {

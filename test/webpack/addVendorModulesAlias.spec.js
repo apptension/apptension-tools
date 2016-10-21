@@ -7,7 +7,7 @@ describe('addVendorModulesAlias', () => {
     const vendorModulesPath = '/vendor-modules/path.js';
     const config = addVendorModulesAlias({paths: {vendorModules: vendorModulesPath}})({resolve: {alias: {}}});
 
-    assert.equal(config.resolve.alias.vendor_modules, vendorModulesPath)
+    assert.equal(config.resolve.alias.vendor_modules, vendorModulesPath);
   });
 
   it('should keep other aliases', () => {
@@ -16,6 +16,6 @@ describe('addVendorModulesAlias', () => {
       otherAlias: otherAlias
     }}});
 
-    assert.equal(config.resolve.alias.otherAlias, otherAlias)
+    assert.equal(config.resolve.alias.otherAlias, otherAlias);
   });
 });

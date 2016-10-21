@@ -1,5 +1,4 @@
 import assert from 'power-assert';
-import {find, propEq, equals} from 'ramda';
 
 import addJSONLoader from '../../webpack/addJSONLoader';
 

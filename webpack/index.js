@@ -38,6 +38,8 @@ export {default as configOutputPath} from './configOutputPath';
 
 export {default as configPostcss} from './configPostcss';
 
+export {default as copyDirectory} from './copyDirectory';
+
 export {default as defineGlobalEnvConstants} from './defineGlobalEnvConstants';
 
 export {default as createConfiguration} from './createConfiguration';
@@ -45,6 +47,7 @@ export {default as createConfiguration} from './createConfiguration';
 export {default as whenEnv} from './whenEnv';
 
 export const defaultEvolutions = [
+  copyDirectory('public'),
   addDevtool(),
   addEnvConfigScriptAlias,
   addHTMLWebpackPlugin(),

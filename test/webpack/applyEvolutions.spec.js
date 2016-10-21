@@ -1,7 +1,6 @@
 import assert from 'power-assert';
 import {spy} from 'sinon';
 import identity from 'lodash/identity';
-import {compose} from 'ramda';
 
 import applyEvolutions from '../../webpack/internal/applyEvolutions';
 

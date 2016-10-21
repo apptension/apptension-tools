@@ -4,10 +4,10 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import addHTMLWebpackPlugin from '../../webpack/addHTMLWebpackPlugin';
 import {production} from '../../env';
 
-describe('addExtractedSassSupport', () => {
+describe('addHTMLWebpackPlugin', () => {
   const env = production({scriptEnv: 'production'});
 
-  it('should add spritesmith plugin', () => {
+  it('should add htmlWebpackPlugin plugin', () => {
     const initialConfig = {plugins: []};
     const config = addHTMLWebpackPlugin()({
       env,

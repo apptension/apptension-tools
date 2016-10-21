@@ -1,5 +1,4 @@
 import assert from 'power-assert';
-import {find, propEq, equals} from 'ramda';
 
 import addInlineSassSupport from '../../webpack/addInlineSassSupport';
 

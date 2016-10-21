@@ -1,10 +1,9 @@
 import assert from 'power-assert';
-import {find, propEq, equals} from 'ramda';
 import webpack from 'webpack';
 
 import addUglifyJS from '../../webpack/addUglifyJS';
 
-describe('addExtractedSassSupport', () => {
+describe('addUglifyJS', () => {
   it('should add uglifyjs plugin', () => {
     const initialConfig = {plugins: []};
     const config = addUglifyJS()(initialConfig);

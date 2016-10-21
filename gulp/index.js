@@ -14,7 +14,6 @@ module.exports = function (_config) {
     eslint: require('./eslint'),
     karma: require('./karma'),
     serverWebpack: require('./serverWebpack'),
-    webpack: require('./webpack'),
     zip: require('./zip')
   };
 };

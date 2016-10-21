@@ -6,6 +6,11 @@ export default () => merge({
   watch: false,
   devtool: false,
   resolve: {
+    modulesDirectories: [
+      'node_modules',
+      'web_modules',
+      'app'
+    ],
     extensions: ['', '.js'],
     alias: {}
   },

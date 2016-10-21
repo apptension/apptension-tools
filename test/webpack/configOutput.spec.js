@@ -3,7 +3,7 @@ import assert from 'power-assert';
 import {dev, devOptimized, production} from '../../env';
 import configOutputPath from '../../webpack/configOutputPath';
 
-describe('addMainEntryPoint', () => {
+describe('configOutputPath', () => {
   describe('production', () => {
     const env = production();
 
