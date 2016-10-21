@@ -46,7 +46,7 @@ export {default as createConfiguration} from './createConfiguration';
 
 export {default as whenEnv} from './whenEnv';
 
-export const defaultEvolutions = [
+export const createDefaultEvolutions = () => [
   copyDirectory('public'),
   addDevtool(),
   addEnvConfigScriptAlias,
