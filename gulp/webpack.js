@@ -27,13 +27,7 @@ module.exports = function (watch) {
     webpackConfig = _.defaultsDeep({
       devtool: 'eval',
       watch: false
-    }, webpackConfig, {
-      output: {
-        path: pathsConfig.paths.dist,
-        filename: filename,
-        publicPath: _.get(userConfig, 'webpack.output.publicPath', '/')
-      }
-    });
+    }, webpackConfig);
 
     var defaultRuntimeEnv = env.isProduction() ? 'production' : 'development';
     var runtimeEnv = gutil.env.env || defaultRuntimeEnv;
