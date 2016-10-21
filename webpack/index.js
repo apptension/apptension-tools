@@ -43,7 +43,7 @@ export {default as createConfiguration} from './createConfiguration';
 export {default as whenEnv} from './whenEnv';
 
 export const defaultEvolutions = [
-  addDevtool,
+  addDevtool(),
   addEnvConfigScriptAlias,
   addHTMLWebpackPlugin(),
   addSpritesmithSprite({name: 'default'}),
