@@ -3,7 +3,7 @@ import path from 'path';
 
 import {isDev, isProd, isDevOptimized} from '../env';
 
-export default ({publicPath = '/'}) => ({env, paths}) => {
+export default ({publicPath = '/'} = {}) => ({env, paths}) => {
   const prodEvolution = evolve({
     output: merge({
       path: paths.dist,

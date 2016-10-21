@@ -21,7 +21,6 @@ module.exports = function (watch) {
   var userConfig = config.getUserConfig();
 
   return function (callback) {
-    var filename = env.isProduction() ? '[name]-[hash].js' : '[name].js';
     var indexTemplatePath = path.join(pathsConfig.paths.app, 'index.ejs');
 
     webpackConfig = _.defaultsDeep({
@@ -40,16 +39,9 @@ module.exports = function (watch) {
           fileName: 'rev-manifest.json'
         }));
       }
-
-      webpackConfig.plugins.push(new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: '"production"'
-        }
-      }));
     }
 
     webpackConfig.plugins.push(new webpack.DefinePlugin({
-      __DEBUG__: !env.isProduction(),
       __CLIENT__: true,
       __SERVER__: false
     }));

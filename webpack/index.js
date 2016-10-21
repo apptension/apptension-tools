@@ -25,12 +25,18 @@ export {default as addTypescriptSupport} from './addTypescriptSupport';
 
 export {default as addUglifyJS} from './addUglifyJS';
 
+export {default as configOutputPath} from './configOutputPath';
+
 export {default as configPostcss} from './configPostcss';
+
+export {default as defineGlobalEnvConstants} from './defineGlobalEnvConstants';
 
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
+  defineGlobalEnvConstants,
   when(isProd, addUglifyJS),
+  configOutputPath(),
   addMainEntryPoint,
   addIndexTemplateLoader,
   addJSONLoader,
