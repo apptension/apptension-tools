@@ -48,18 +48,6 @@ module.exports = function (watch) {
       {from: path.join(pathsConfig.paths.app, pathsConfig.dirNames.public), to: pathsConfig.dirNames.public}
     ]));
 
-    try {
-      fs.accessSync(indexTemplatePath, fs.F_OK);
-      webpackConfig.plugins.push(new HtmlWebpackPlugin(_.assign({
-        template: indexTemplatePath,
-        inject: 'body',
-        environment: runtimeEnv,
-        debug: !env.isProduction()
-      }, _.get(userConfig, 'htmlExtraOptions', {}))));
-    } catch (e) {
-    }
-
-    _.set(webpackConfig, 'resolve.alias.env-config', path.join(pathsConfig.paths.environment, runtimeEnv + '.js'));
     _.set(webpackConfig, 'resolve.modulesDirectories', [
       'node_modules',
       'web_modules',

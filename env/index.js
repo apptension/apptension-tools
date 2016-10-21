@@ -4,12 +4,23 @@ const ENV_DEV = 'development';
 const ENV_DEV_OPTIMIZED = 'development-optimized';
 const ENV_PROD = 'production';
 
-const buildEnv = envName => options => Object.freeze({
-  ...options,
-  envName
-});
+const buildEnv = envName => {
+  /**
+   * @param options
+   */
+  return options => Object.freeze({
+    devServer: {
+      domain: 'localhost',
+      port: 8000
+    },
+    scriptEnv: 'development',
+    ...options,
+    envName
+  });
+};
 
 const envNameEq = propEq('envName');
+
 
 export const dev = buildEnv(ENV_DEV);
 

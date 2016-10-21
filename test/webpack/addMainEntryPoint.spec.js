@@ -19,7 +19,7 @@ describe('addMainEntryPoint', () => {
   });
 
   describe('development', () => {
-    const env = dev({devServer: {domain: 'localhost', port: 8000}});
+    const env = dev();
 
     it('should add path to script as an entry point', () => {
       const config = addMainEntryPoint({
@@ -39,7 +39,7 @@ describe('addMainEntryPoint', () => {
   });
 
   describe('developmentOptimized', () => {
-    const env = devOptimized({devServer: {domain: 'localhost', port: 8000}});
+    const env = devOptimized();
 
     it('should add path to script as an entry point', () => {
       const config = addMainEntryPoint({

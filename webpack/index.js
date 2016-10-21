@@ -4,6 +4,8 @@ export {default as addBabelSupport} from './addBabelSupport';
 
 export {default as addCommonStaticFilesLoader} from './addCommonStaticFilesLoader';
 
+export {default as addEnvConfigScriptAlias} from './addEnvConfigScriptAlias';
+
 export {default as addExtractedSassSupport} from './addExtractedSassSupport';
 
 export {default as addExtractedVendorStylesSupport} from './addExtractedVendorStylesSupport';
@@ -39,6 +41,7 @@ export {default as createConfiguration} from './createConfiguration';
 export {default as whenEnv} from './whenEnv';
 
 export const defaultEvolutions = [
+  addEnvConfigScriptAlias,
   addHTMLWebpackPlugin(),
   addSpritesmithSprite({name: 'default'}),
   defineGlobalEnvConstants,
