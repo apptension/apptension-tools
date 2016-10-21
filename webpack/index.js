@@ -1,3 +1,6 @@
+import {when} from 'ramda';
+import {isProd} from '../env';
+
 export {default as addBabelSupport} from './addBabelSupport';
 
 export {default as addCommonStaticFilesLoader} from './addCommonStaticFilesLoader';
@@ -20,11 +23,14 @@ export {default as addVendorModulesAlias} from './addVendorModulesAlias';
 
 export {default as addTypescriptSupport} from './addTypescriptSupport';
 
+export {default as addUglifyJS} from './addUglifyJS';
+
 export {default as configPostcss} from './configPostcss';
 
 export createConfiguration from './createConfiguration';
 
 export const defaultEvolutions = [
+  when(isProd, addUglifyJS),
   addMainEntryPoint,
   addIndexTemplateLoader,
   addJSONLoader,

@@ -34,7 +34,6 @@ module.exports = function (watch) {
 
     if (env.isProduction()) {
       webpackConfig.devtool = false;
-      webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
 
       if (userConfig.generateRevManifest) {
         webpackConfig.plugins.push(new ManifestPlugin({
