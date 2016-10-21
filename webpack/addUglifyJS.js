@@ -5,4 +5,4 @@ export default () => (config) => {
   return evolve({
     plugins: append(new webpack.optimize.UglifyJsPlugin())
   })(config);
-}
+};

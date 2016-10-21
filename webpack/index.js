@@ -1,4 +1,3 @@
-import {when} from 'ramda';
 import {isProd} from '../env';
 
 export {default as addBabelSupport} from './addBabelSupport';
@@ -19,6 +18,8 @@ export {default as addJSONLoader} from './addJSONLoader';
 
 export {default as addMainEntryPoint} from './addMainEntryPoint';
 
+export {default as addSpritesmithSprite} from './addSpritesmithSprite';
+
 export {default as addVendorModulesAlias} from './addVendorModulesAlias';
 
 export {default as addTypescriptSupport} from './addTypescriptSupport';
@@ -31,11 +32,14 @@ export {default as configPostcss} from './configPostcss';
 
 export {default as defineGlobalEnvConstants} from './defineGlobalEnvConstants';
 
-export createConfiguration from './createConfiguration';
+export {default as createConfiguration} from './createConfiguration';
+
+export {default as whenEnv} from './whenEnv';
 
 export const defaultEvolutions = [
+  addSpritesmithSprite({name: 'default'}),
   defineGlobalEnvConstants,
-  when(isProd, addUglifyJS),
+  whenEnv(isProd, addUglifyJS),
   configOutputPath(),
   addMainEntryPoint,
   addIndexTemplateLoader,

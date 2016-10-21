@@ -39,6 +39,6 @@ describe('webpack applyEvolutions', () => {
       () => lastMiddleware,
       () => identity,
       () => identity
-    )(env)({}), expectedResult)
+    )(env)({}), expectedResult);
   });
 });

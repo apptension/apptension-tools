@@ -7,4 +7,4 @@ export default function applyEvolutions(...evolutions) {
     const chain = evolutions.map(evolution => evolution(evolutionAPI));
     return compose(...chain);
   };
-};
+}
