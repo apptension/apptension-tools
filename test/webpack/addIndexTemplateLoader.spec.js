@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addIndexTemplateLoader from '../../webpack/addIndexTemplateLoader';
+import addIndexTemplateLoader from '../../src/webpack/addIndexTemplateLoader';
 
 describe('addIndexTemplateLoader', () => {
   it('should add the loader', () => {

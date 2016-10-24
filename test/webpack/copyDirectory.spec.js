@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import copyDirectory from '../../webpack/copyDirectory';
+import copyDirectory from '../../src/webpack/copyDirectory';
 
 describe('copyDirectory', () => {
   it('should add CopyWebpackPlugin', () => {

@@ -2,7 +2,7 @@ import assert from 'power-assert';
 import {spy} from 'sinon';
 import identity from 'lodash/identity';
 
-import applyEvolutions from '../../webpack/internal/applyEvolutions';
+import applyEvolutions from '../../src/webpack/internal/applyEvolutions';
 
 describe('webpack applyEvolutions', () => {
   it('should call every middleware with previous result', () => {

@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 
-import {dev, devOptimized, production} from '../../env';
-import addMainEntryPoint from '../../webpack/addMainEntryPoint';
+import {dev, devOptimized, production} from '../../src/env';
+import addMainEntryPoint from '../../src/webpack/addMainEntryPoint';
 
 describe('addMainEntryPoint', () => {
   describe('production', () => {

@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addVendorModulesAlias from '../../webpack/addVendorModulesAlias';
+import addVendorModulesAlias from '../../src/webpack/addVendorModulesAlias';
 
 describe('addVendorModulesAlias', () => {
   it('should define vendor_modules in alias object', () => {

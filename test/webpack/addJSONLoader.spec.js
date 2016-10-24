@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addJSONLoader from '../../webpack/addJSONLoader';
+import addJSONLoader from '../../src/webpack/addJSONLoader';
 
 describe('addJSONLoader', () => {
   it('should add the loader', () => {

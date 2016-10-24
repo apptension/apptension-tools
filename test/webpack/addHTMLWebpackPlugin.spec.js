@@ -1,8 +1,8 @@
 import assert from 'power-assert';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import addHTMLWebpackPlugin from '../../webpack/addHTMLWebpackPlugin';
-import {production} from '../../env';
+import addHTMLWebpackPlugin from '../../src/webpack/addHTMLWebpackPlugin';
+import {production} from '../../src/env';
 
 describe('addHTMLWebpackPlugin', () => {
   const env = production({scriptEnv: 'production'});

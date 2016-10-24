@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 
-import {dev, devOptimized, production} from '../../env';
-import defineGlobalConstants from '../../webpack/defineGlobalEnvConstants';
+import {dev, devOptimized, production} from '../../src/env';
+import defineGlobalConstants from '../../src/webpack/defineGlobalEnvConstants';
 import {DefinePlugin} from 'webpack';
 
 describe('defineGlobalConstants', () => {

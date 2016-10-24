@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import {dev, devOptimized, production, ENV_DEV, ENV_DEV_OPTIMIZED, ENV_PROD} from '../../env/index';
+import {dev, devOptimized, production, ENV_DEV, ENV_DEV_OPTIMIZED, ENV_PROD} from '../../src/env/index';
 
 describe('env', () => {
   const testEnv = (env, envName) => {

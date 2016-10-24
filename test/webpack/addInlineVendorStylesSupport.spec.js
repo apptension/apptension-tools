@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addInlineVendorStylesSupport from '../../webpack/addInlineVendorStylesSupport';
+import addInlineVendorStylesSupport from '../../src/webpack/addInlineVendorStylesSupport';
 
 describe('addInlineVendorStylesSupport', () => {
   it('should add the loader', () => {

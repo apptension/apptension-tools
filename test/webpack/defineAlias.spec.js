@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import defineAlias from '../../webpack/defineAlias';
+import defineAlias from '../../src/webpack/defineAlias';
 
 describe('defineAlias', () => {
   it('should define alias with specified name nad path', () => {

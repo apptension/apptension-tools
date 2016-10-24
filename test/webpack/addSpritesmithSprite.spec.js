@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import SpritesmithPlugin from 'webpack-spritesmith';
 
-import addSpritesmithSprite from '../../webpack/addSpritesmithSprite';
+import addSpritesmithSprite from '../../src/webpack/addSpritesmithSprite';
 
 describe('addSpritesmithSprite', () => {
   it('should add spritesmith plugin', () => {

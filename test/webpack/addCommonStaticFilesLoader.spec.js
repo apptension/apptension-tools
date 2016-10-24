@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addCommonStaticFilesLoader from '../../webpack/addCommonStaticFilesLoader';
+import addCommonStaticFilesLoader from '../../src/webpack/addCommonStaticFilesLoader';
 
 describe('addCommonStaticFilesLoader', () => {
   it('should add the loader', () => {

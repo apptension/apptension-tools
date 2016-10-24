@@ -1,7 +1,7 @@
 import assert from 'power-assert';
-import {find, propEq, equals} from 'ramda';
+import {find, equals} from 'ramda';
 
-import addBabelSupport from '../../webpack/addBabelSupport';
+import addBabelSupport from '../../src/webpack/addBabelSupport';
 
 describe('addBabelSupport', () => {
   it('should add babel loader', () => {

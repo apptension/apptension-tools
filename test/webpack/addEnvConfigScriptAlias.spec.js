@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 
-import addEnvConfigScriptAlias from '../../webpack/addEnvConfigScriptAlias';
-import {production} from '../../env';
+import addEnvConfigScriptAlias from '../../src/webpack/addEnvConfigScriptAlias';
+import {production} from '../../src/env';
 
 describe('addEnvConfigScriptAlias', () => {
   const env = production();

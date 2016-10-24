@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import webpack from 'webpack';
 
-import addUglifyJS from '../../webpack/addUglifyJS';
+import addUglifyJS from '../../src/webpack/addUglifyJS';
 
 describe('addUglifyJS', () => {
   it('should add uglifyjs plugin', () => {

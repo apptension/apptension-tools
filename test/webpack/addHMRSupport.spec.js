@@ -1,8 +1,8 @@
 import assert from 'power-assert';
 import {HotModuleReplacementPlugin} from 'webpack';
 
-import addHMRSupport from '../../webpack/addHMRSupport';
-import {dev} from '../../env';
+import addHMRSupport from '../../src/webpack/addHMRSupport';
+import {dev} from '../../src/env';
 
 describe('addHTMLWebpackPlugin', () => {
   const env = dev({

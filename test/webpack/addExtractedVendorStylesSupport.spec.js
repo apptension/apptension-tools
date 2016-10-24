@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-import addExtractedVendorStylesSupport from '../../webpack/addExtractedVendorStylesSupport';
+import addExtractedVendorStylesSupport from '../../src/webpack/addExtractedVendorStylesSupport';
 
 describe('addExtractedVendorStylesSupport', () => {
   it('should add sass loader', () => {

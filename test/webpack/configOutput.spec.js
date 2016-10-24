@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 
-import {dev, devOptimized, production} from '../../env';
-import configOutputPath from '../../webpack/configOutputPath';
+import {dev, devOptimized, production} from '../../src/env';
+import configOutputPath from '../../src/webpack/configOutputPath';
 
 describe('configOutputPath', () => {
   describe('production', () => {

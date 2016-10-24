@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import configPostcss from '../../webpack/configPostcss';
+import configPostcss from '../../src/webpack/configPostcss';
 
 describe('configPostcss', () => {
   it('should add the loader', () => {

@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addInlineSassSupport from '../../webpack/addInlineSassSupport';
+import addInlineSassSupport from '../../src/webpack/addInlineSassSupport';
 
 describe('addInlineSassSupport', () => {
   it('should add the loader', () => {

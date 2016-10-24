@@ -1,8 +1,8 @@
 import assert from 'power-assert';
 import ManifestPlugin from 'webpack-manifest-plugin';
 
-import addManifestPlugin from '../../webpack/addManifestPlugin';
-import {production} from '../../env';
+import addManifestPlugin from '../../src/webpack/addManifestPlugin';
+import {production} from '../../src/env';
 
 describe('addManifestPlugin', () => {
   const env = production({scriptEnv: 'production'});

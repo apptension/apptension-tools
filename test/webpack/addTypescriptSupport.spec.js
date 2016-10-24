@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import {find, propEq, equals} from 'ramda';
 
-import addTypeScriptSupport from '../../webpack/addTypeScriptSupport';
+import addTypeScriptSupport from '../../src/webpack/addTypeScriptSupport';
 
 describe('addTypescriptSupport', () => {
   it('should add typescript loader', () => {
