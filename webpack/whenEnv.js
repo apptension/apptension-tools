@@ -1,3 +1,5 @@
-import {when, propSatisfies} from 'ramda';
+import {ifElse, propSatisfies} from 'ramda';
 
-export default (check, fn) => when(propSatisfies(check, 'env'), fn);
+import pass from './pass';
+
+export default (check, fn) => ifElse(propSatisfies(check, 'env'), fn, pass);
