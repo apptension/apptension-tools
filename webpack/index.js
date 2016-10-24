@@ -8,6 +8,8 @@ export {default as addDevtool} from './addDevtool';
 
 export {default as addEnvConfigScriptAlias} from './addEnvConfigScriptAlias';
 
+export {default as addEslint} from './addEslint';
+
 export {default as addExtractedSassSupport} from './addExtractedSassSupport';
 
 export {default as addExtractedVendorStylesSupport} from './addExtractedVendorStylesSupport';

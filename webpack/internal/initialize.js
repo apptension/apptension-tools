@@ -16,7 +16,8 @@ export default () => merge({
   },
   plugins: [],
   module: {
-    loaders: []
+    loaders: [],
+    preLoaders: [],
   },
   node: {
     __dirname: true,
