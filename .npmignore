@@ -3,6 +3,7 @@
 .eslintrc
 .gitignore
 .travis.yml
+.idea
 
 src
 test
