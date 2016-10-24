@@ -1,6 +1,6 @@
 {
   "name": "apptension-tools",
-  "version": "6.0.0-alpha1",
+  "version": "6.0.0-alpha2",
   "description": "Common tools used in Apptension's projects",
   "repository": "https://github.com/apptension/apptension-tools.git",
   "main": "index.js",
@@ -13,6 +13,8 @@
   "scripts": {
     "test": "mocha --require babel-register --require ./test/enable-power-assert",
     "test:watch": "mocha --require ./test/enable-power-assert --watch",
+    "compile": "babel src --out-dir dist",
+    "prepublish": "npm run compile",
     "release": "npm run release-patch",
     "release-patch": "git checkout master; git commit -a -m 'Build dist/'; npm version patch && git push origin master --tags && npm publish",
     "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish",
@@ -28,6 +30,8 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.14.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "babel-core": "^6.10.4",
     "eslint": "^3.0.0",
     "eslint-config-apptension": "^1.1.1",
     "eslint-plugin-react": "^5.2.2",
@@ -39,10 +43,8 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.6",
-    "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "browser-sync": "^2.13.0",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
