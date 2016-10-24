@@ -14,7 +14,7 @@ describe('addMainEntryPoint', () => {
         filePatterns: {mainScript: 'main.js'}
       })({entry: null});
 
-      assert.deepStrictEqual(config.entry, {main: '/app/main.js'});
+      assert.deepStrictEqual(config.entry, {main: ['/app/main.js']});
     });
   });
 
@@ -28,13 +28,7 @@ describe('addMainEntryPoint', () => {
         filePatterns: {mainScript: 'main.js'}
       })({entry: null});
 
-      assert.deepStrictEqual(config.entry, {
-        main: [
-          'webpack-dev-server/client?http://' + env.devServer.domain + ':' + env.devServer.port + '/',
-          'webpack/hot/dev-server',
-          '/app/main.js'
-        ]
-      });
+      assert.deepStrictEqual(config.entry, {main: ['/app/main.js']});
     });
   });
 
@@ -48,13 +42,7 @@ describe('addMainEntryPoint', () => {
         filePatterns: {mainScript: 'main.js'}
       })({entry: null});
 
-      assert.deepStrictEqual(config.entry, {
-        main: [
-          'webpack-dev-server/client?http://' + env.devServer.domain + ':' + env.devServer.port + '/',
-          'webpack/hot/dev-server',
-          '/app/main.js'
-        ]
-      });
+      assert.deepStrictEqual(config.entry, {main: ['/app/main.js']});
     });
   });
 });

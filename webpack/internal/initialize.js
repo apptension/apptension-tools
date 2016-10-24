@@ -19,6 +19,7 @@ export default () => merge({
     loaders: [],
     preLoaders: [],
   },
+  devServer: {},
   node: {
     __dirname: true,
     fs: 'empty',

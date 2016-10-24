@@ -14,6 +14,8 @@ export {default as addExtractedSassSupport} from './addExtractedSassSupport';
 
 export {default as addExtractedVendorStylesSupport} from './addExtractedVendorStylesSupport';
 
+export {default as addHMRSupport} from './addHMRSupport';
+
 export {default as addHTMLWebpackPlugin} from './addHTMLWebpackPlugin';
 
 export {default as addIndexTemplateLoader} from './addIndexTemplateLoader';
