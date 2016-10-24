@@ -7,7 +7,6 @@
 
 src
 test
-dist
 
 README.md
 yarn.lock
