@@ -73,7 +73,7 @@ module.exports = function (userConfig) {
   }
 
   var userWebpackConfig = _.get(userConfig, 'webpack', {}),
-    autoprefixerConfig  = _.get(userConfig, 'autoprefixer', {
+    autoprefixerConfig = _.get(userConfig, 'autoprefixer', {
       browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']
     });
 
