@@ -72,14 +72,17 @@ module.exports = function (userConfig) {
     webpackPlugins.push(extractVendorCSSPlugin);
   }
 
-  var userWebpackConfig = _.get(userConfig, 'webpack', {});
+  var userWebpackConfig = _.get(userConfig, 'webpack', {}),
+    autoprefixerConfig  = _.get(userConfig, 'autoprefixer', {
+      browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']
+    });
 
   return _.defaultsDeep({
     module: {
       loaders: webpackLoaders
     },
     postcss: function () {
-      return [autoprefixer({browsers: ['last 2 versions', 'last 3 iOS versions', 'not ie <= 8']})];
+      return [autoprefixer(autoprefixerConfig)];
     },
     plugins: webpackPlugins,
     node: {
