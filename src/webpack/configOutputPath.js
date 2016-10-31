@@ -1,11 +1,11 @@
-import {evolve, cond, either, always, merge} from 'ramda';
+import {evolve, cond, either, always, merge, defaultTo} from 'ramda';
 
 import {isDev, isProd, isDevOptimized} from '../env';
 
-export default ({publicPath = '/'} = {}) => ({env, paths}) => {
+export default ({publicPath = '/', path} = {}) => ({env, paths}) => {
   const prodEvolution = evolve({
     output: merge({
-      path: paths.dist,
+      path: defaultTo(paths.dist, path),
       filename: '[name]-[hash].js',
       publicPath: publicPath
     })
@@ -13,7 +13,7 @@ export default ({publicPath = '/'} = {}) => ({env, paths}) => {
 
   const devEvolution = evolve({
     output: merge({
-      path: paths.dist,
+      path: defaultTo(paths.dist, path),
       filename: '[name].js',
       publicPath: publicPath
     })
