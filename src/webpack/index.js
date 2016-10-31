@@ -28,6 +28,8 @@ export {default as addJSONLoader} from './addJSONLoader';
 
 export {default as addLoader} from './addLoader';
 
+export {default as addPlugin} from './addPlugin';
+
 export {default as addMainEntryPoint} from './addMainEntryPoint';
 
 export {default as addManifestPlugin} from './addManifestPlugin';
