@@ -17,4 +17,15 @@ describe('addHTMLWebpackPlugin', () => {
 
     assert(plugin instanceof HtmlWebpackPlugin);
   });
+
+  it('should set filename option', () => {
+    const filename = 'filename.html';
+    const config = addHTMLWebpackPlugin({filename})({
+      env,
+      paths: {app: '/app'}
+    })({plugins: []});
+    const [plugin] = config.plugins;
+
+    assert.equal(plugin.options.filename, filename);
+  });
 });

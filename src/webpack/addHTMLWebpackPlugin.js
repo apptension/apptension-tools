@@ -4,7 +4,7 @@ import path from 'path';
 
 import {isProd, isDevOptimized} from '../env';
 
-export default ({htmlExtraOptions = {}} = {}) => ({env, paths}) => evolve({
+export default (htmlExtraOptions = {}) => ({env, paths}) => evolve({
   plugins: append(new HtmlWebpackPlugin(merge({
     template: path.join(paths.app, 'index.ejs'),
     inject: 'body',
