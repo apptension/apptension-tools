@@ -2,7 +2,7 @@ import {evolve, append} from 'ramda';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default () => (config) => {
-  const extractPlugin = new ExtractTextPlugin('styles.css', {allChunks: true});
+  const extractPlugin = new ExtractTextPlugin('styles-[contenthash].css', {allChunks: true});
 
   return evolve({
     module: {
@@ -17,4 +17,4 @@ export default () => (config) => {
     },
     plugins: append(extractPlugin)
   })(config);
-}
+};

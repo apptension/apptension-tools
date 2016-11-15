@@ -18,7 +18,6 @@ describe('addExtractedVendorStylesSupport', () => {
     const [plugin] = config.plugins;
 
     assert(plugin instanceof ExtractTextPlugin);
-    assert.equal(plugin.filename, 'vendor.css');
   });
 
   it('should set proper filename', () => {
@@ -26,6 +25,6 @@ describe('addExtractedVendorStylesSupport', () => {
     const config = addExtractedVendorStylesSupport()(initialConfig);
     const [plugin] = config.plugins;
 
-    assert.equal(plugin.filename, 'vendor.css');
+    assert.equal(plugin.filename, 'vendor-[contenthash].css');
   });
 });

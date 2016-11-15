@@ -25,6 +25,6 @@ describe('addExtractedSassSupport', () => {
     const config = addExtractedSassSupport()(initialConfig);
     const [plugin] = config.plugins;
 
-    assert.equal(plugin.filename, 'styles.css');
+    assert.equal(plugin.filename, 'styles-[contenthash].css');
   });
 });
