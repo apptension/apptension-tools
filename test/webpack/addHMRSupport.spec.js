@@ -28,6 +28,7 @@ describe('addHTMLWebpackPlugin', () => {
 
     assert.deepStrictEqual(config.entry, {
       main: [
+        'react-hot-loader/patch',
         'webpack-dev-server/client?http://' + env.devServer.domain + ':' + env.devServer.port + '/',
         'webpack/hot/dev-server',
         '/app/main.js'
