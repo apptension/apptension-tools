@@ -7,6 +7,7 @@ var getWebpackConfig = require('./getWebpackConfig');
 var getRevManifestConfig = require('./getRevManifestConfig');
 var getSassConfig = require('./getSassConfig');
 var getCssnanoConfig = require('./getCssnanoConfig');
+var getAutoprefixerConfig = require('./getAutoprefixerConfig');
 var getWebpackDevServerConfig = require('./getWebpackDevServerConfig');
 var getHandlebarsConfig = require('./getHandlebarsConfig');
 
@@ -45,6 +46,10 @@ module.exports.getSassConfig = function () {
 
 module.exports.getCssnanoConfig = function () {
   return getCssnanoConfig(_userConfig);
+};
+
+module.exports.getAutoprefixerConfig = function () {
+  return getAutoprefixerConfig(_userConfig);
 };
 
 module.exports.getWebpackDevServerConfig = function () {

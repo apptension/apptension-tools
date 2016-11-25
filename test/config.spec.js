@@ -8,6 +8,7 @@ var getWebpackConfig = require('../gulp/config/getWebpackConfig');
 var getRevManifestConfig = require('../gulp/config/getRevManifestConfig');
 var getSassConfig = require('../gulp/config/getSassConfig');
 var getCssnanoConfig = require('../gulp/config/getCssnanoConfig');
+var getAutoprefixerConfig = require('../gulp/config/getAutoprefixerConfig');
 var getWebpackDevServerConfig = require('../gulp/config/getWebpackDevServerConfig');
 
 
@@ -45,6 +46,13 @@ describe('config', function () {
     var expectedConfig = getCssnanoConfig();
     assert.ok(cssnanoConfig);
     assert.deepEqual(cssnanoConfig, expectedConfig);
+  });
+
+  it('getAutoprefixerConfig should return autoprefixer config', function () {
+    var autoprefixerConfig = config.getAutoprefixerConfig();
+    var expectedConfig = getAutoprefixerConfig();
+    assert.ok(autoprefixerConfig);
+    assert.deepEqual(autoprefixerConfig, expectedConfig);
   });
 
   it('getWebpackDevServerConfig should return webpack dev server config', function () {
