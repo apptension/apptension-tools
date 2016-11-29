@@ -27,6 +27,7 @@ module.exports = function (watch) {
 
     if (!env.isProduction()) {
       entry.unshift(
+        'react-hot-loader/patch',
         'webpack-dev-server/client?http://' + serverConfig.domain + ':' + serverConfig.port + '/',
         'webpack/hot/dev-server'
       );
