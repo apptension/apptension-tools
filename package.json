@@ -1,6 +1,6 @@
 {
   "name": "apptension-tools",
-  "version": "6.0.0-alpha9",
+  "version": "6.0.0-alpha10",
   "description": "Common tools used in Apptension's projects",
   "repository": "https://github.com/apptension/apptension-tools.git",
   "main": "index.js",
@@ -13,12 +13,14 @@
   "scripts": {
     "test": "mocha --require babel-register test/**/*.spec.js",
     "test:watch": "mocha --require ./test/enable-power-assert --watch",
+    "clean": "rimraf ./dist/*",
+    "copy-package": "ncp package.json dist/package.json",
     "compile": "babel src --out-dir dist",
-    "prepublish": "npm run compile",
+    "prepublish": "npm-run-all clean compile copy-package",
     "release": "npm run release-patch",
-    "release-patch": "git checkout master; git commit -a -m 'Build dist/'; npm version patch && git push origin master --tags && npm publish",
-    "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish",
-    "release-major": "git checkout master; git commit -a -m 'Build dist/'; npm version major && git push origin master --tags && npm publish"
+    "release-patch": "git checkout master; git commit -a -m 'Build dist/'; npm version patch && git push origin master --tags && npm publish ./dist",
+    "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish ./dist",
+    "release-major": "git checkout master; git commit -a -m 'Build dist/'; npm version major && git push origin master --tags && npm publish ./dist"
   },
   "author": {
     "name": "Patryk Ziemkowski",
@@ -82,11 +84,14 @@
     "lodash": "^4.13.1",
     "merge-stream": "^1.0.0",
     "mocha": "^2.5.3",
+    "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
+    "npm-run-all": "^3.1.2",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-loader": "^0.9.1",
     "ramda": "^0.22.1",
     "react-hot-loader": "3.0.0-beta.6",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "underscore-template-loader": "^0.7.3",

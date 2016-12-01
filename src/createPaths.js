@@ -2,7 +2,7 @@ import {get} from 'lodash';
 import path from 'path';
 
 
-export default (env) => {
+export default (paths) => {
   const dirNames = {
     dist: 'dist',
     app: 'app',
@@ -73,12 +73,12 @@ export default (env) => {
     test: 'test.js'
   };
 
-  var cwd = get(env, 'paths.cwd', process.cwd());
-  var appPath = path.join(cwd, get(env, 'paths.app', dirNames.app));
-  var backendPath = path.join(cwd, dirNames.backend);
-  var tmpPath = path.join(cwd, dirNames.tmp);
-  var distPath = path.join(cwd, get(env, 'paths.dist', dirNames.dist));
-  var vendorModulesPath = path.join(cwd, dirNames.vendorModules);
+  var _cwd = get(paths, 'cwd', process.cwd());
+  var appPath = path.join(_cwd, get(paths, 'app', dirNames.app));
+  var backendPath = path.join(_cwd, dirNames.backend);
+  var tmpPath = path.join(_cwd, dirNames.tmp);
+  var distPath = path.join(_cwd, get(paths, 'dist', dirNames.dist));
+  var vendorModulesPath = path.join(_cwd, dirNames.vendorModules);
   var spritesPath = path.join(appPath, dirNames.images, dirNames.sprites);
   var imagesPath = path.join(appPath, dirNames.images);
   var specPath = path.join(appPath, dirNames.spec);
@@ -94,7 +94,7 @@ export default (env) => {
     environmentScripts: environmentScripts,
     paths: {
       app: appPath,
-      cwd: cwd,
+      cwd: _cwd,
       src: srcPath,
       sprites: spritesPath,
       eslint: srcPath,

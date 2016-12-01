@@ -1,30 +1,26 @@
 import assert from 'power-assert';
 import {HotModuleReplacementPlugin} from 'webpack';
 
-import addHMRSupport from '../../src/webpack/addHMRSupport';
-import {dev} from '../../src/env';
+import addHMRSupport from '../../src/webpack/dev/addHMRSupport';
 
 describe('addHTMLWebpackPlugin', () => {
-  const env = dev({
+  const env = {
     devServer: {
       domain: 'localhost',
       port: 8000
     }
-  });
+  };
 
   it('should add htmlWebpackPlugin plugin', () => {
     const initialConfig = {plugins: []};
-    const config = addHMRSupport({env})(initialConfig);
+    const config = addHMRSupport(env)(initialConfig);
     const [plugin] = config.plugins;
 
     assert(plugin instanceof HotModuleReplacementPlugin);
   });
 
   it('should prepend HMR scripts to entry point array', () => {
-    const config = addHMRSupport({
-      env,
-      paths: {app: '/app'}
-    })({entry: {main: ['/app/main.js']}});
+    const config = addHMRSupport(env)({entry: {main: ['/app/main.js']}});
 
     assert.deepStrictEqual(config.entry, {
       main: [

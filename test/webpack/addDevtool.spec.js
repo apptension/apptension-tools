@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addDevtool from '../../src/webpack/addDevtool';
+import addDevtool from '../../src/webpack/dev/addDevtool';
 
 describe('addDevtool', () => {
   it('should set devtool property to eval as default', () => {

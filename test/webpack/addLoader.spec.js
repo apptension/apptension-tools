@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addLoader from '../../src/webpack/addLoader';
+import addLoader from '../../src/webpack/utils/addLoader';
 
 describe('addLoader', () => {
   it('should add the loader', () => {

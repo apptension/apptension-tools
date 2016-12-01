@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addPlugin from '../../src/webpack/addPlugin';
+import addPlugin from '../../src/webpack/utils/addPlugin';
 
 describe('addPlugin', () => {
   it('should add the plugin', () => {

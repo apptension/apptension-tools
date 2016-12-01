@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import addEslint from '../../src/webpack/addEslint';
+import addEslint from '../../src/webpack/dev/addEslint';
 
 describe('addTypescriptSupport', () => {
   it('should add typescript preLoader', () => {

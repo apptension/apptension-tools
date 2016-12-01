@@ -1,6 +1,6 @@
 import combineLoaders from 'webpack-combine-loaders';
 
-import addLoader from './addLoader';
+import addLoader from './utils/addLoader';
 
 export default addLoader({
   test: /\.css$/,
