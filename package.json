@@ -1,6 +1,6 @@
 {
   "name": "apptension-tools",
-  "version": "6.0.0-alpha10",
+  "version": "6.0.0-alpha12",
   "description": "Common tools used in Apptension's projects",
   "repository": "https://github.com/apptension/apptension-tools.git",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "clean": "rimraf ./dist/*",
     "copy-package": "ncp package.json dist/package.json",
     "compile": "babel src --out-dir dist",
-    "prepublish": "npm-run-all clean compile copy-package",
+    "prepare": "npm-run-all clean compile copy-package",
     "release": "npm run release-patch",
     "release-patch": "git checkout master; git commit -a -m 'Build dist/'; npm version patch && git push origin master --tags && npm publish ./dist",
     "release-minor": "git checkout master; git commit -a -m 'Build dist/'; npm version minor && git push origin master --tags && npm publish ./dist",
