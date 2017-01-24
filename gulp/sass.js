@@ -27,16 +27,14 @@ module.exports = function () {
     base: pathsConfig.paths.app
   })
     .pipe(sassCompiler)
-    .pipe(autoprefixerCompiler);
+    .pipe(autoprefixerCompiler)
+    .pipe(cssnano(cssnanoConfig));
 
   stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 
   if (env.isDevelopment()) {
     stream = stream
       .pipe(browserSync.stream());
-  } else {
-    stream = stream
-      .pipe(cssnano(cssnanoConfig));
   }
 
   return stream;
