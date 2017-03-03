@@ -13,7 +13,6 @@ var env = require('./utils/env');
 module.exports = function () {
   var pathsConfig = config.getPathsConfig();
   var sassConfig = config.getSassConfig();
-  var cssnanoConfig = config.getCssnanoConfig();
   var autoprefixerConfig = config.getAutoprefixerConfig();
 
   var sassOptions = _.extend({}, sassConfig, {
@@ -21,14 +20,25 @@ module.exports = function () {
   });
   var sassCompiler = sass(sassOptions);
   sassCompiler.on('error', sass.logError);
-  var autoprefixerCompiler = autoprefixer(autoprefixerConfig);
 
   var stream = gulp.src(path.join(pathsConfig.paths.app, pathsConfig.filePatterns.styles), {
     base: pathsConfig.paths.app
   })
-    .pipe(sassCompiler)
-    .pipe(autoprefixerCompiler)
-    .pipe(cssnano(cssnanoConfig));
+    .pipe(sassCompiler);
+
+  if (env.isDevelopment()) {
+    var autoprefixerCompiler = autoprefixer(autoprefixerConfig);
+
+    stream = stream
+      .pipe(autoprefixerCompiler);
+  } else {
+    var cssnanoConfig = config.getCssnanoConfig();
+
+    cssnanoConfig.autoprefixer = _.extend({}, autoprefixerConfig);
+
+    stream = stream
+      .pipe(cssnano(cssnanoConfig));
+  }
 
   stream = stream.pipe(gulp.dest(pathsConfig.paths.tmp));
 
