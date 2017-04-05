@@ -2,6 +2,7 @@ var DEVELOPMENT = 1;
 var PRODUCTION = 2;
 
 var _value = DEVELOPMENT;
+var _productionSourceMap = false;
 
 module.exports = {
   DEVELOPMENT: DEVELOPMENT,
@@ -17,5 +18,13 @@ module.exports = {
 
   'set': function (value) {
     _value = value;
+  },
+
+  addProductionSourceMap: function () {
+    _productionSourceMap = true;
+  },
+
+  isSourceMapRequired: function () {
+    return _productionSourceMap;
   }
 };
