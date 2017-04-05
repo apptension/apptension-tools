@@ -51,7 +51,7 @@ module.exports = function (watch) {
     var runtimeEnv = gutil.env.env || defaultRuntimeEnv;
 
     if (env.isProduction()) {
-      webpackConfig.devtool = false;
+      webpackConfig.devtool = env.isSourceMapRequired() ? 'cheap-source-map' : false;
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
 
       if (userConfig.generateRevManifest) {
