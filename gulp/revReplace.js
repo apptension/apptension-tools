@@ -15,6 +15,18 @@ module.exports = function () {
   }
 
   return gulp.src(pathsConfig.filePatterns.revReplace, {cwd: pathsConfig.paths.dist})
-    .pipe(revReplace({manifest: manifest, replaceInExtensions: ['.js', '.css', '.html', '.hbs', '.json']}))
+    .pipe(revReplace({
+      manifest: manifest,
+      replaceInExtensions: ['.js', '.css', '.html', '.hbs', '.json'],
+      modifyUnreved: replaceJsIfMap,
+      modifyReved: replaceJsIfMap
+    }))
     .pipe(gulp.dest(pathsConfig.paths.dist));
+
+  function replaceJsIfMap(filename) {
+    if (filename.indexOf('.map') !== -1) {
+      return filename.replace(pathsConfig.dirNames.src + '/', '');
+    }
+    return filename;
+  }
 };
