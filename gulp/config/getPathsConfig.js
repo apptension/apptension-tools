@@ -54,13 +54,15 @@ module.exports = function (userConfig) {
       '**/*.eot',
       '**/*.mp4',
       '**/*.webm',
-      '**/*.mov'
+      '**/*.mov',
+      '**/*.map'
     ],
     revReplace: [
       '!backend/**/*',
       '**/*.js',
       '**/*.json',
       '**/*.css',
+      '**/*.map',
       '*.html'
     ],
     zip: '**/*',
