@@ -31,7 +31,7 @@ module.exports = function (watch) {
 
     var jsConfig, debug = true;
     if (env.isProduction()) {
-      webpackConfig.devtool = false;
+      webpackConfig.devtool = 'source-map';
       webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({output: {comments: false}}));
       debug = false;
     }
